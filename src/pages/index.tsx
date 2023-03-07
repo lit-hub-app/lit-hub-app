@@ -1,4 +1,4 @@
-import styles from '@/styles/Home.module.scss'
+// import styles from '@/styles/Navbar.module.scss'
 // import Head from 'next/head'
 // import Image from 'next/image'
 // import { Inter } from 'next/font/google'
@@ -13,10 +13,25 @@ import styles from '@/styles/Home.module.scss'
 //   );
 // };
 
+import { useState, useEffect } from 'react';
 import type { NextPage } from "next";
+import type api from './api/getBooks';
 
 const Home: NextPage = () => {
-  return <div>HOME PAGE</div>;
+
+  useEffect(() => {
+    console.log('use effect invoked')
+    void fetch('api/getBooks')
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data)
+      })
+      .catch((error) => (console.log('api/getBooks', error)));
+  }, []);
+
+  return <div>Lit Hub</div>;
 };
 
 export default Home;

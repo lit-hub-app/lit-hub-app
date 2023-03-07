@@ -2,9 +2,10 @@ import Link from 'next/link';
 
 export default function NavBarComponent() {
   return (
-    <nav>
+    <nav id='navbar'>
       <Link href='/'>HOME</Link>
-      <Link href='/about'>LINK TO PAGE</Link>
+      <Link href='/about'>ABOUT</Link>
     </nav>
   )
 };
+
