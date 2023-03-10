@@ -4,6 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
+package-lock.json
+src/_old/
+pages/scratch.js
 
 # testing
 /coverage

@@ -15,7 +15,11 @@ const Home: NextPage = () => {
   //     .catch((error) => (console.log('api/getBooks', error)));
   // }, []);
 
-  return <div>Lit Hub</div>;
+  return (
+    <div>
+      <h1>LIT HUB</h1>
+    </div>
+  );
 };
 
 export default Home;
