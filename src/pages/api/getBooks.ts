@@ -1,4 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+// %20 - white space url code
+
+// Example search url
+// http://gutendex.com/books/?search=dickens%20great
+
 
 export default async function getBooks(
   req: NextApiRequest,
