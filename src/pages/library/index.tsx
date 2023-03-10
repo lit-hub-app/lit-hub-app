@@ -6,7 +6,7 @@ export default function LibraryPage() {
 
   useEffect(() => {
     console.log('use effect invoked')
-    void fetch('api/getBooks')
+    void fetch('api/gutenDex/getBooks')
       .then((response) => {
         return response.json();
       })
@@ -32,6 +32,8 @@ export default function LibraryPage() {
     title: string,
     authors: Array<object>,
   };
+
+  
 
   return (
     <div>
