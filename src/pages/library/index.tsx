@@ -20,6 +20,17 @@ export default function LibraryPage() {
       .get(`/api/searchBooks`, { params: { term: searchKeyword } })
       .then((response) => {
         console.log('found', response.data)
+        const foundBooks: BookInterface[] = [];
+        response.data.results.forEach((book) => {
+          const newBook: BookInterface = {
+            id: book.id,
+            title: book.title,
+            authors: book.authors ? book.authors : [],
+          };
+          foundBooks.push(newBook);
+        });
+        // console.log(foundBooks)
+        setBooks(foundBooks);
       })
       .catch((error) => (console.log('search books error', error)));
 
@@ -47,14 +58,11 @@ export default function LibraryPage() {
 
   useEffect(() => {
     // console.log('use effect invoked')
-    void fetch('api/getBooks')
+    axios('api/getBooks')
       .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
         // console.log(data)
         const newBooks: BookInterface[] = [];
-        data.results.forEach((book) => {
+        response.data.results.forEach((book) => {
           const newBook: BookInterface = {
             id: book.id,
             title: book.title,
@@ -91,7 +99,7 @@ export default function LibraryPage() {
             return (
               <div key={book.id} className='library-book-div'>
                 <h2>{book.title}</h2>
-                <h4>{book.authors[0].name}</h4>
+                <h4>{book.authors ? book.authors[0] : ''}</h4>
               </div>
             )
           })
