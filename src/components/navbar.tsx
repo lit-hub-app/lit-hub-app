@@ -4,10 +4,10 @@ import styles from '@/styles/Navbar.module.scss';
 export default function NavBarComponent() {
   return (
     <nav className={styles.navbar}>
-      <div className={styles.navbrand}>
+      <div className={styles.navBrand}>
         <Link href='/'>LITHUB</Link>
       </div>
-      <div className='nav-menu'>
+      <div className={styles.navMenu}>
         <ul>
           <li>
             <Link href='/library'>Library</Link>
