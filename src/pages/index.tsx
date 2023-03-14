@@ -10,9 +10,12 @@ const Home: NextPage = () => {
 
   return (
     <div>
-      <h1>LIT HUB</h1>
+      <h1>LIT HUB APP</h1>
       {/* <SearchBar resultsHandler={showResults} /> */}
-    </div>
+      {/* <div className={ }> */}
+
+      {/* </div> */}
+    </div >
   );
 };
 
