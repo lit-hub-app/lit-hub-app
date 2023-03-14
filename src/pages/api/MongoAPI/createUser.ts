@@ -23,7 +23,7 @@ export default async function createUser(
             .insertOne(doc)
 
         console.log(`A document was inserted with the _id: ${user.insertedId}`);
-
+        res.status(201).json(user.insertedId)
     } catch (error) {
         console.log('DB Create User', error);
     } 

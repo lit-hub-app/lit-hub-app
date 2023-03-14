@@ -9,9 +9,9 @@ export default async function getBooks(
   try {
     const response = await fetch('https://gutendex.com//books');
     const books = await response.json();
+    
     console.log('got', books.count)
     res.status(200).json(books);
-    // return;
   } catch (error) {
     console.error('api get books', error)
   }
