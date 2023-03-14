@@ -8,12 +8,10 @@ export default function LibraryPage() {
 
   function updateSearchKeyword(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
-    // console.log(name, value)
     setSearchKeyword(value);
   };
 
   function search(event: React.SyntheticEvent) {
-    console.log('seraching', searchKeyword);
     event.preventDefault();
 
     axios
@@ -29,38 +27,15 @@ export default function LibraryPage() {
           };
           foundBooks.push(newBook);
         });
-        // console.log(foundBooks)
         setBooks(foundBooks);
       })
       .catch((error) => (console.log('search books error', error)));
 
-    // void fetch('api/searchBooks', { term: searchKeyword })
-    //   .then((response) => {
-    //     return response.json();
-    //   })
-    //   .then((data) => {
-    //     console.log(data)
-    //     const newBooks: BookInterface[] = [];
-    //     data.results.forEach((book) => {
-    //       const newBook: BookInterface = {
-    //         id: book.id,
-    //         title: book.title,
-    //         authors: book.authors,
-    //       };
-    //       newBooks.push(newBook);
-    //     });
-    //     console.log(newBooks)
-    //     setBooks(newBooks);
-    //   })
-    //   .catch((error) => (console.log('api/getBooks', error)));
-
   };
 
   useEffect(() => {
-    // console.log('use effect invoked')
     axios('api/getBooks')
       .then((response) => {
-        // console.log(data)
         const newBooks: BookInterface[] = [];
         response.data.results.forEach((book) => {
           const newBook: BookInterface = {
@@ -70,7 +45,6 @@ export default function LibraryPage() {
           };
           newBooks.push(newBook);
         });
-        // console.log(newBooks)
         setBooks(newBooks);
       })
       .catch((error) => (console.log('api/getBooks', error)));
