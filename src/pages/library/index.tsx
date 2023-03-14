@@ -1,70 +1,45 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+// import styles from '@/styles/Library.module.scss';
+import SearchBar from '../../common/components/SearchBar';
 
 export default function LibraryPage() {
 
   const [books, setBooks] = useState<Array<BookInterface>>([]);
   const [searchKeyword, setSearchKeyword] = useState('');
 
-  function updateSearchKeyword(event: React.ChangeEvent<HTMLInputElement>) {
-    const { name, value } = event.target;
-    setSearchKeyword(value);
-  };
-
-  function search(event: React.SyntheticEvent) {
-    event.preventDefault();
-
-    axios
-      .get(`/api/searchBooks`, { params: { term: searchKeyword } })
-      .then((response) => {
-        console.log('found', response.data)
-        const foundBooks: BookInterface[] = [];
-        response.data.results.forEach((book) => {
-          const newBook: BookInterface = {
-            id: book.id,
-            title: book.title,
-            authors: book.authors ? book.authors : [],
-          };
-          foundBooks.push(newBook);
-        });
-        setBooks(foundBooks);
-      })
-      .catch((error) => (console.log('search books error', error)));
-
-  };
-
   useEffect(() => {
-    axios('api/getBooks')
-      .then((response) => {
-        const newBooks: BookInterface[] = [];
-        response.data.results.forEach((book) => {
-          const newBook: BookInterface = {
-            id: book.id,
-            title: book.title,
-            authors: book.authors,
-          };
-          newBooks.push(newBook);
-        });
-        setBooks(newBooks);
-      })
-      .catch((error) => (console.log('api/getBooks', error)));
   }, []);
 
-  interface BookInterface {
+  type BookInterface = {
     id: number,
     title: string,
     authors: Array<object>,
   };
 
+  function updateBooks(results: Array<object>) {
+    console.log('index got', results.results);
+    const books: Array<object> = results.results;
+    const newBooks: BookInterface[] = [];
+    for (let i = 0; i < books.length; i++) {
+      const newBook: BookInterface = {
+        id: books[i].id,
+        title: books[i].title,
+        authors: books[i].authors,
+      }
+      newBooks.push(newBook);
+    }
+    setBooks(newBooks);
+  }
+
   return (
-    <div>
-      <h1>Library</h1>
-      <div id='search-bar'>
-        <h2>SEARCH</h2>
-        <form onSubmit={search}>
-          <input name='search-keyword' type='text' value={searchKeyword} onChange={updateSearchKeyword} />
-          <button name='submit-button' type='submit'>SEARCH</button>
-        </form>
+    <div className='page-container'>
+      <h1 className='page-header'>Library</h1>
+
+      <div className='search-panel'>
+        <SearchBar resultsHandler={updateBooks} />
+        <div className='search-options'>
+        </div>
       </div>
 
       <div id='library-books-container'>
@@ -79,6 +54,7 @@ export default function LibraryPage() {
           })
         }
       </div>
+
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { NextPage } from "next";
-import SearchBar from '../components/SearchBar';
-import Card from '../components/Card';
+import SearchBar from '../common/components/SearchBar';
+import Card from '../common/components/Card';
 
 const Home: NextPage = () => {
 
