@@ -1,7 +1,29 @@
 .searchBar {
-  border: 4px solid black;
+  // border: 4px solid black;
+  // padding: 1rem;
+
+  form {
+    // border: 4px solid black;
+    // padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
 
   label {
     display: none;
+  }
+
+  input {
+    width: 30rem;
+  }
+
+  button {
+    border: 4px solid black;
+    color: black;
+    background: none;
+    width: 4rem;
+    height: 4rem;
   }
 }

@@ -2,6 +2,7 @@ import axios from 'axios';
 import TextInput from './TextInput';
 import { useState } from 'react';
 import styles from '@/styles/SearchBar.module.scss';
+import { GoSearch } from "react-icons/go";
 
 type SearchBarProps = {
   // resultsHandler: React.ChangeEventHandler<HTMLInputElement>,
@@ -32,10 +33,11 @@ export default function SearchBarComponent({ resultsHandler }: SearchBarProps) {
 
   return (
     <div className={styles.searchBar}>
-      {/* Search Bar */}
       <form onSubmit={search}>
         <TextInput name={'search-bar'} value={searchKeyword} changeHandler={updateSearchKeyword} />
-        <button name='submit-button' type='submit'>SEARCH</button>
+        <button name='submit-button' type='submit'>
+          <GoSearch size={20} />
+        </button>
       </form>
     </div>
   )
