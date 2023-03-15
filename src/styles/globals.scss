@@ -49,15 +49,11 @@ h2 {
   align-items: center;
 }
 
-#library-books-container {
+#library-books {
   border: 4px solid black;
   margin: 0.5rem;
-
-  .library-book-div {
-    border: 4px solid black;
-    margin: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }

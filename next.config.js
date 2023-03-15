@@ -7,6 +7,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'iili.io',
         port: ''
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.gutenberg.org',
+        port: ''
       }
     ]
   },

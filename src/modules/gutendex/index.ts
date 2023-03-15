@@ -12,3 +12,13 @@ export async function searchBooks(query: string) {
     console.error('api get books', error)
   }
 }
+
+export async function getBooks() {
+  try {
+    const response = await axios.get(`https://gutendex.com//books`);
+    const books = await response.data;
+    return books;
+  } catch (error) {
+    console.error('api get books', error)
+  }
+}
