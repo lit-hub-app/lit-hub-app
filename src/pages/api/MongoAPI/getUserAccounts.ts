@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import clientPromise from '../appDatabase/database';
+import clientPromise from '../../../lib/database';
 
 export default async function getUsers(
     req: NextApiRequest,

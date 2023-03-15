@@ -18,6 +18,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/api/appDatabase/bcrypt.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/lib/bcrypt.js"],
   "exclude": ["node_modules"]
 }
