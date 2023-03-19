@@ -9,6 +9,7 @@ export async function searchBooks(query: string) {
     const books = await response.data;
     return books;
   } catch (error) {
+
     console.error('api get books', error)
   }
 }
