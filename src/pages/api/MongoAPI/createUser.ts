@@ -8,11 +8,13 @@ export default async function createUser(
 ) {
     const { body } = req;
     console.log(body);
-
+    if (body.password !== body.passwordConfirm) {
+        return res.status(400).json({ error: 'Passwords do not match' });
+    }
     
     try {
     await connection();
-
+    
     const user = await User.create(body);
 
     res.json({success: true, user});
