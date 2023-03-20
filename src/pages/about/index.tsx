@@ -1,3 +1,5 @@
+import createUser from "../api/MongoAPI/createUser";
+
 export default function AboutPage() {
 
   return (
