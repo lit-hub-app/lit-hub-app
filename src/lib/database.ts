@@ -7,6 +7,11 @@ if (!MONGODB_URI) {
     'Please define the MONGODB_URI environment variable inside .env.local'
   )
 }
+
+declare global {
+  var mongoose: any
+}
+
 let cached = global.mongoose
 
 if (!cached) {
