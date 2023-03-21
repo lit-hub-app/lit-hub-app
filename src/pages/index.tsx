@@ -8,8 +8,7 @@ const Home: NextPage = () => {
 
   return (
     <div className='page-container'>
-      <h1 className='page-header'>LIT HUB E READER APP</h1>
-
+      {/* <h1 className='page-header'>Guten Reader</h1> */}
       <div className='page-content'>
         <div className='homepage-cards'>
           <Card id={1} title={'Library'} image={LIBRARY_IMAGE_URL} link={'/library'} />
