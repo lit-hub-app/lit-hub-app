@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+
+const path = require('path');
+
 const nextConfig = {
   reactStrictMode: true,
   images: {
@@ -12,12 +15,23 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'www.gutenberg.org',
         port: ''
+      },
+      {
+        protocol: 'https',
+        hostname: 'media.istockphoto.com',
+        port: ''
+      },
+      {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+        port: ''
       }
     ]
   },
-  // sassOptions: {
-
-  // }
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+    prependData: `@import "@/styles/variables.scss";`
+  }
 }
 
 module.exports = nextConfig

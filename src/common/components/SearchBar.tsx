@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { GoSearch } from "react-icons/go";
-import styles from '@/styles/SearchBar.module.scss';
+import styles from '@/styles/components/SearchBar.module.scss';
 import TextInput from './TextInput';
 
 import { searchBooks } from '../../modules/gutendex';
 
-type SearchBarProps = {
+type Props = {
   resultsHandler: Function
 }
 
-export default function SearchBarComponent({ resultsHandler }: SearchBarProps) {
+export default function SearchBarComponent({ resultsHandler }: Props) {
 
   const [searchKeyword, setSearchKeyword] = useState('');
 

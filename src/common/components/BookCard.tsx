@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '@/styles/BookCard.module.scss';
+import styles from '@/styles/components/BookCard.module.scss';
 
-type BookCardProps = {
+type Props = {
   id: number,
   title: string,
   image: string,
 }
 
-export default function CardComponent({ id, title, image }: BookCardProps) {
+export default function CardComponent({ id, title, image }: Props) {
   return (
     <div className={styles.bookCard}>
       <h3>{title}</h3>
