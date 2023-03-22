@@ -4,7 +4,7 @@ import SearchBar from '@/common/components/SearchBar';
 import Card from '@/common/components/Card';
 
 import type { BookType } from '@/common/types';
-import { getBooks } from '@/modules/gutendex';
+// import { getBooks } from '@/modules/gutendex';
 import { fetcher } from '@/modules/utils';
 
 type ResultsType = {
@@ -16,15 +16,11 @@ type ResultsType = {
 
 export default function LibraryPage() {
 
-  const { data, error } = useSWR<ResultsType>('/api/GutenDex/getBooks', fetcher);
+  const { data, error } = useSWR<ResultsType>('/api/getbooks', fetcher);
   const [books, setBooks] = useState<Array<BookType>>();
 
   console.log(books)
 
-  // useEffect(() => {
-  // }, [data]);
-
-  // fetcher
 
   function updateBooks(results: ResultsType) {
     console.log('index got', results.results);
