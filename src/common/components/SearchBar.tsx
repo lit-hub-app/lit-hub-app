@@ -1,9 +1,8 @@
 import { useCallback, useRef, useState } from 'react';
+import axios from 'axios';
 import { GoSearch } from "react-icons/go";
 import styles from '@/styles/components/SearchBar.module.scss';
 import TextInput from './TextInput';
-
-import { searchBooks } from '@/modules/gutendex';
 
 type Props = {
   resultsHandler: Function
@@ -13,14 +12,10 @@ export default function SearchBarComponent({ resultsHandler }: Props) {
 
   const [searchKeyword, setSearchKeyword] = useState('');
 
-
   const searchRef = useRef(null);
   const [query, setQuery] = useState('');
   const [active, setActive] = useState(false);
   const [results, setResults] = useState([]);
-
-
-
 
   function updateSearchKeyword(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -29,11 +24,12 @@ export default function SearchBarComponent({ resultsHandler }: Props) {
 
   function search(event: React.SyntheticEvent) {
     event.preventDefault();
-    searchBooks(searchKeyword)
-      .then((data) => {
-        resultsHandler(data)
+    axios(`/api/search?query=${searchKeyword}`)
+      .then((response) => {
+        resultsHandler(response.data);
       })
       .catch((error) => (console.log('search error', error)));
+
   };
 
   return (
