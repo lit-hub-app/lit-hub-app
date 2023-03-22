@@ -1,17 +1,26 @@
-import { useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { GoSearch } from "react-icons/go";
 import styles from '@/styles/components/SearchBar.module.scss';
 import TextInput from './TextInput';
 
-import { searchBooks } from '../../modules/gutendex';
+import { searchBooks } from '@/modules/gutendex';
 
 type Props = {
   resultsHandler: Function
-}
+};
 
 export default function SearchBarComponent({ resultsHandler }: Props) {
 
   const [searchKeyword, setSearchKeyword] = useState('');
+
+
+  const searchRef = useRef(null);
+  const [query, setQuery] = useState('');
+  const [active, setActive] = useState(false);
+  const [results, setResults] = useState([]);
+
+
+
 
   function updateSearchKeyword(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -37,4 +46,4 @@ export default function SearchBarComponent({ resultsHandler }: Props) {
       </form>
     </div>
   )
-}
+};

@@ -73,7 +73,7 @@ main {}
 
 }
 
-#library-books {
+.library-books {
   margin: 0.4rem;
   display: flex;
   flex-wrap: wrap;
@@ -97,6 +97,10 @@ main {}
     width: 100%;
     font-size: large;
     text-align: center;
+  }
+
+  a {
+    position: relative;
   }
 
   .card-image {

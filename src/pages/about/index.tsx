@@ -1,4 +1,4 @@
-import createUser from "../api/MongoAPI/createUser";
+import createUser from "../../modules/mongoapi/createUser";
 
 export default function AboutPage() {
 

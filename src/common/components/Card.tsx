@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-// import styles from '@/styles/components/Card.module.scss';
 
 type Props = {
   id: number,
@@ -21,6 +20,9 @@ export default function CardComponent({ id, title, image, link }: Props) {
             src={image}
             alt='Card image not found!'
             fill
+            sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
           />
         </Link>
       </div>
