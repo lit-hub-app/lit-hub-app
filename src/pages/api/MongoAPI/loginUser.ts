@@ -19,7 +19,7 @@ export default async function loginUser(
 
             if (match) {
                 const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET as string);
-
+                
                 res.status(200).json({
                     message: 'Login successful',
                     token,

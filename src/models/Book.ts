@@ -7,6 +7,7 @@ interface Book {
     description: string;
     image: string;
     text: string;
+    userID: mongoose.Types.ObjectId;
 }
 
 const Schema = mongoose.Schema;
@@ -34,6 +35,10 @@ const BookSchema = new Schema<Book>({
         type: String,
         required: true
     },
+    userID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }
 });
 
 const Book = mongoose.models.Book || mongoose.model("Book", BookSchema);

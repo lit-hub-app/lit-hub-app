@@ -1,7 +1,5 @@
 import mongoose from 'mongoose';
 import bcrypt from "bcrypt";
-import Book from '../models/Book';
-
 interface User {
     username: string;
     password: string;
@@ -23,11 +21,11 @@ const UserSchema = new Schema<User>({
         required: true,
         unique: true,
     },
-    password: { type: String, required: true },
+    password: { 
+        type: String, 
+        required: true 
+    },
     avatar: { type: String },
-    books: [{ 
-        type: Schema.Types.ObjectId, ref: 'Book' 
-    }],
 });
 
 // Pre save encryption salts/hashes user passwords
