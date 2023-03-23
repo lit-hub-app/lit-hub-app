@@ -5,7 +5,6 @@ interface User {
     password: string;
     email: string;
     avatar?: string;
-    books?: Array<object>
 }
 
 const Schema = mongoose.Schema;
@@ -25,7 +24,9 @@ const UserSchema = new Schema<User>({
         type: String, 
         required: true 
     },
-    avatar: { type: String },
+    avatar: { 
+        type: String 
+    },
 });
 
 // Pre save encryption salts/hashes user passwords
