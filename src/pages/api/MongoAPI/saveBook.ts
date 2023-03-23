@@ -7,13 +7,17 @@ export default async function saveBook(
     req: NextApiRequest,
     res: NextApiResponse,
 ) { 
+    interface JwtPayload {
+        id: string
+    }
     
     const { body } = req;
 
     const token = req.headers.token as string;
     const secret = process.env.JWT_SECRET as string;
 
-    const decoded = jwt.verify(token, secret);
+    const decoded = jwt.verify(token, secret) as JwtPayload;
+
     if (!token || !decoded) {
         res.status(500).json({ message: 'Invalid token' });
     }
