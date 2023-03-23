@@ -7,7 +7,7 @@ export default async function saveBook(
     req: NextApiRequest,
     res: NextApiResponse,
 ) { 
-    const { username } = req.query;
+    
     const { body } = req;
     console.log(body)
 
@@ -21,6 +21,6 @@ export default async function saveBook(
         
     }
     catch (error) {
-        res.status(400).json({success: false, error});
+        res.status(500).json({success: false, error});
     }
 }

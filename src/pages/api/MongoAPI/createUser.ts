@@ -25,6 +25,6 @@ export default async function createUser(
     res.status(201).json({success: true, user});
     }
     catch (error) {
-        res.status(400).json({success: false, error});
+        res.status(500).json({success: false, error});
     }
 }
