@@ -9,18 +9,34 @@ export default async function saveBook(
 ) { 
     
     const { body } = req;
-    console.log(body)
+
+    const token = req.headers.token as string;
+    const secret = process.env.JWT_SECRET as string;
+
+    const decoded = jwt.verify(token, secret);
+    if (!token || !decoded) {
+        res.status(500).json({ message: 'Invalid token' });
+    }
 
 
     try {
         await connection();
 
-        const book = Book.create(body)
+        const data = {
+            title: body.title,
+            author: body.author,
+            genre: body.genre,
+            description: body.description,
+            image: body.image,
+            text: body.text,
+            userID: decoded.id,
+        }
 
-        res.status(201).json({success: true, book});
-        
+        const book = await Book.create(data);
+
+        res.status(201).json({ success: true, book });
     }
     catch (error) {
-        res.status(500).json({success: false, error});
+        res.status(500).json({ success: false, error });
     }
 }

@@ -18,6 +18,7 @@ export default async function createUser(
     }
     
     try {
+        
     await connection();
     
     const user = await User.create(body);
