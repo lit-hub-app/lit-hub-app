@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import connection from "../../../lib/database";
-import User from '../../../models/User';
+import connection from "../../../../lib/database";
+import User from '../../../../models/User';
 
 export default async function loginUser(
     req: NextApiRequest, 

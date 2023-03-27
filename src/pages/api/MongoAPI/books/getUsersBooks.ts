@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import jwt from "jsonwebtoken";
-import connection from '../../../lib/database';
-import Book from "../../../models/Book";
+import connection from '../../../../lib/database';
+import Book from "../../../../models/Book";
 
 export default async function getUsersBooks(
     req: NextApiRequest,
