@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import connection from '../../lib/database';
-import User from '../../models/User';
+import connection from '@/lib/database';
+import User from '@/models/User';
 
 export default async function createUser(
     req: NextApiRequest,
@@ -19,12 +19,10 @@ export default async function createUser(
 
     try {
         await connection();
-
         const user = await User.create(body);
-
         res.status(201).json({ success: true, user });
     }
     catch (error) {
-        res.status(400).json({ success: false, error });
+        res.status(500).json({ success: false, error });
     }
 }
