@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import bcrypt from "bcrypt";
-
 interface User {
     username: string;
     password: string;
@@ -21,8 +20,13 @@ const UserSchema = new Schema<User>({
         required: true,
         unique: true,
     },
-    password: { type: String, required: true },
-    avatar: { type: String },
+    password: { 
+        type: String, 
+        required: true 
+    },
+    avatar: { 
+        type: String 
+    },
 });
 
 // Pre save encryption salts/hashes user passwords

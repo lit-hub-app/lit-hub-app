@@ -13,6 +13,6 @@ export default async function getUsers(
 
         res.status(200).json(users);
     } catch (error) {
-        console.log("Get users error", error);
+        res.status(500).json({success: false, error })
     }
 }

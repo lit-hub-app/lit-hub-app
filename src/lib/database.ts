@@ -1,6 +1,9 @@
 import mongoose from 'mongoose'
 
 const MONGODB_URI = process.env.MONGODB_URI as string
+declare global {
+  var mongoose: any
+}
 
 if (!MONGODB_URI) {
   throw new Error(
@@ -8,9 +11,6 @@ if (!MONGODB_URI) {
   )
 }
 
-declare global {
-  var mongoose: any
-}
 
 let cached = global.mongoose
 
