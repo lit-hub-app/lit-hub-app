@@ -9,7 +9,6 @@ import { fetcher } from '@/modules/utils';
 
 const IMAGE_NOT_FOUND_URL = 'https://e7.pngegg.com/pngimages/829/733/png-clipart-logo-brand-product-trademark-font-not-found-logo-brand.png';
 
-
 type ResultsType = {
   count: number,
   next: string | null,
@@ -54,7 +53,7 @@ export default function LibraryPage() {
                   id={book.id}
                   title={book.title}
                   image={book.formats['image/jpeg'] ? book.formats['image/jpeg'] : IMAGE_NOT_FOUND_URL}
-                  link={''}
+                  link={`/reader/${book.id}`}
                 />
               )
             }))

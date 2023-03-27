@@ -27,7 +27,6 @@
     text-align: center;
   }
 
-
   .card-image {
     // border: 4px solid black;
     position: relative;
@@ -35,14 +34,17 @@
     height: 100%;
 
     a {
-      // border: 2px solid red;
+      text-decoration: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
     }
 
     img {
       // border: 2px solid black;
       object-fit: contain;
-      // width: 100%;
-      // height: 100%;
+      width: 100%;
+      height: 100%;
     }
   }
 }
