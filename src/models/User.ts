@@ -51,7 +51,7 @@ UserSchema.pre('save', function(next) {
     } else {
         return next();
     }
-})
+});
 
 const User = mongoose.models.User || mongoose.model("User", UserSchema);
 

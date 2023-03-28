@@ -19,14 +19,14 @@ export default async function deleteBook(
     const decoded = jwt.verify(token, secret) as JwtPayload;
 
     if (!token || !decoded) {
-        res.status(500).json({ message: 'Invalid token' });
+        res.status(500).json({ success: false, message: 'Invalid token' });
     }
 
     try {
         await connection();
 
         const book = await Book.findByIdAndDelete(bookID);
-        
+
         if (book) {
             res.status(200).json({success: true, book});
         } else {
