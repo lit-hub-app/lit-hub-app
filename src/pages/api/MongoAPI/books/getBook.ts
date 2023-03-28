@@ -2,23 +2,17 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import connection from '../../../../lib/database';
 import Book from '../../../../models/Book';
 import jwt from "jsonwebtoken";
+import verifyToken from "../../../../lib/middleware";
 
 export default async function getBook(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
-    interface JwtPayload {
-        id: string;
-    }
-
     const { id } = req.query;
 
-    const token = req.headers.token as string;
-    const secret = process.env.JWT_SECRET as string;
-    const decoded = jwt.verify(token, secret) as JwtPayload;
+    const token = verifyToken(req.headers.token as string);
 
-
-    if (!token || !decoded) {
+    if (!token) {
         res.status(500).json({ message: "Invalid token" });
     }
 

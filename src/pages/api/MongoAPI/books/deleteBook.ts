@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import connection from '../../../../lib/database';
+import verifyToken from '../../../../lib/middleware';
 import Book from '../../../../models/Book';
-import jwt from "jsonwebtoken";
 
 export default async function deleteBook(
     req: NextApiRequest,
@@ -12,13 +12,10 @@ export default async function deleteBook(
     }
 
     const { bookID } = req.query;
-    console.log(bookID);
 
-    const token = req.headers.token as string;
-    const secret = process.env.JWT_SECRET as string;
-    const decoded = jwt.verify(token, secret) as JwtPayload;
+    const token = verifyToken(req.headers.token as string);
 
-    if (!token || !decoded) {
+    if (!token) {
         res.status(500).json({ success: false, message: 'Invalid token' });
     }
 

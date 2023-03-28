@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import Book from '../../../../models/Book';
 import connection from "../../../../lib/database";
 import jwt from "jsonwebtoken";
+import verifyToken from '../../../../lib/middleware';
 
 export default async function saveBook(
     req: NextApiRequest,
@@ -13,12 +14,9 @@ export default async function saveBook(
     
     const { body } = req;
 
-    const token = req.headers.token as string;
-    const secret = process.env.JWT_SECRET as string;
+    const token = verifyToken(req.headers.token as string);
 
-    const decoded = jwt.verify(token, secret) as JwtPayload;
-
-    if (!token || !decoded) {
+    if (!token) {
         res.status(500).json({ message: 'Invalid token' });
     }
 
@@ -33,7 +31,7 @@ export default async function saveBook(
             description: body.description,
             image: body.image,
             text: body.text,
-            userID: decoded.id,
+            userID: token,
         }
 
         const book = await Book.create(data);
