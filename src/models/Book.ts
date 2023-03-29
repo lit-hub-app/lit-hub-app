@@ -1,4 +1,4 @@
-import { Schema, Types } from 'mongoose'
+import { Schema, Types, models, model } from 'mongoose'
 
 interface Book {
     title: string;
@@ -39,6 +39,6 @@ const BookSchema = new Schema<Book>({
     }
 });
 
-const Book = mongoose.models.Book || mongoose.model("Book", BookSchema);
+const Book = models.Book || model("Book", BookSchema);
 
 export default Book;

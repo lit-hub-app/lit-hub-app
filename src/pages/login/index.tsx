@@ -1,26 +1,36 @@
 import { useState } from 'react';
 import styles from '@/styles/pages/Login.module.scss';
 import Link from 'next/link';
-
+import router from 'next/router';
+import axios from 'axios';
 export default function LoginPage() {
 
-  const [user, setUser] = useState('');
+  const cookie = require('cookie-cutter');
+
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   function loginUser(event: React.FormEvent) {
     event.preventDefault();
-    console.log('logging in', user, password);
+    console.log('logging in', email, password);
 
     // add stuff to login user and verify user below
+    axios.post('/api/MongoAPI/user/loginUser', {
+      email: email,
+      password: password
+    })
+      .then((res) => {
+        cookie.set('token', res.data.token, { path: '/' });
+      })
   };
 
   function updateInput(event: React.ChangeEvent) {
+   
     const { name, value } = event.currentTarget;
-    console.log(name, value);
 
     switch (name) {
-      case 'user':
-        setUser(value);
+      case 'email':
+        setEmail(value);
         break;
 
       case 'password':
@@ -39,13 +49,13 @@ export default function LoginPage() {
       <div className={styles.login}>
         <form onSubmit={loginUser}>
           <label>
-            USERNAME
+            EMAIL
             <input
-              id='username'
+              id='email'
               type='text'
-              placeholder='username'
-              name='user'
-              value={user}
+              placeholder='email'
+              name='email'
+              value={email}
               onChange={updateInput}
             />
           </label>
