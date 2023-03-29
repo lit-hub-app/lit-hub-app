@@ -10,30 +10,31 @@ interface User {
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema<User>({
-    username: { 
-        type: String, 
+    username: {
+        type: String,
         required: true,
         unique: true,
     },
-    email: { 
-        type: String, 
+    email: {
+        type: String,
         required: true,
         unique: true,
     },
-    password: { 
-        type: String, 
-        required: true 
+    password: {
+        type: String,
+        required: true
     },
-    avatar: { 
-        type: String 
+    avatar: {
+        type: String
     },
+    books: [] //string[bookIds] ==> _id from mongo
 });
 
 // Pre save encryption salts/hashes user passwords
-UserSchema.pre('save', function(next) {
+UserSchema.pre('save', function (next) {
     const user = this;
 
-    if(this.isModified('password') || this.isNew) {
+    if (this.isModified('password') || this.isNew) {
         bcrypt.genSalt(10, (saltError, salt) => {
             if (saltError) {
                 return next(saltError);

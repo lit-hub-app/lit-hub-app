@@ -1,8 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import connection from '../../../../lib/database';
-import Book from '../../../../models/Book';
-import jwt from "jsonwebtoken";
-import verifyToken from "../../../../lib/middleware";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import connection from '@/lib/database';
+import Book from '@/models/Book';
+import verifyToken from '@/lib/middleware';
 
 export default async function getBook(
     req: NextApiRequest,
@@ -13,7 +12,7 @@ export default async function getBook(
     const token = verifyToken(req.headers.token as string);
 
     if (!token) {
-        res.status(500).json({ message: "Invalid token" });
+        res.status(500).json({ message: 'Invalid token' });
     }
 
     try {
@@ -24,7 +23,7 @@ export default async function getBook(
         if (book) {
             res.status(200).json({ success: true, book })
         } else {
-            res.status(404).json({ success: false, message: "Book not found" });
+            res.status(404).json({ success: false, message: 'Book not found' });
         }
 
     } catch (error) {

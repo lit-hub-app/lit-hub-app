@@ -14,13 +14,13 @@ export default function CardComponent({ id, title, image, link }: Props) {
   // console.log(id, title, image, link);
 
   return (
-    <div className={'card'}>
+    <div className={styles.card}>
 
-      <div className={'card-title'}>
+      <div className={styles.cardTitle}>
         <h3>{title}</h3>
       </div>
 
-      <div className={'card-image'}>
+      <div className={styles.cardImage}>
         <Link href={link}>
           <Image
             src={image}

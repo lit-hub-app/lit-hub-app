@@ -1,10 +1,9 @@
-import { useCallback, useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 import SearchBar from '@/common/components/SearchBar';
 import Card from '@/common/components/Card';
 
 import type { BookType } from '@/common/types';
-// import { getBooks } from '@/modules/gutendex';
 import { fetcher } from '@/modules/utils';
 
 const IMAGE_NOT_FOUND_URL = 'https://e7.pngegg.com/pngimages/829/733/png-clipart-logo-brand-product-trademark-font-not-found-logo-brand.png';
@@ -31,7 +30,6 @@ export default function LibraryPage() {
     const books: Array<BookType> = results.results;
     setBooks(books);
   };
-
 
   return (
     <div className='page-container'>
