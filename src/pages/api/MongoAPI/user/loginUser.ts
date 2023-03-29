@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import connection from '../../../lib/database';
-import User from '../../../models/User';
+import connection from "../../../../lib/database";
+import User from '../../../../models/User';
 
 export default async function loginUser(
     req: NextApiRequest, 
@@ -20,10 +20,9 @@ export default async function loginUser(
             if (match) {
                 const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET as string);
 
-                res.status(200).json({
-                    message: 'Login successful',
-                    token,
-                });
+                res.status(200).json({success: true, token });
+            } else {
+                res.status(401).json({ success: false, message: 'Invalid credentials' });
             }
 
         }
