@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import { Schema } from 'mongoose';
 import bcrypt from "bcrypt";
 interface User {
     username: string;
@@ -6,8 +6,6 @@ interface User {
     email: string;
     avatar?: string;
 }
-
-const Schema = mongoose.Schema;
 
 const UserSchema = new Schema<User>({
     username: { 

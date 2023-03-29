@@ -13,6 +13,7 @@ export default async function createUser(
     }
     // Password Validation
     const PASSWORD_REGEX =  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+    
     if (!PASSWORD_REGEX.test(body.password)) {
         return res.status(500).json({ error: 'Password is too weak.' });
     }

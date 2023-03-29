@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import { Schema, Types } from 'mongoose'
 
 interface Book {
     title: string;
@@ -7,10 +7,8 @@ interface Book {
     description: string;
     image: string;
     text: string;
-    userID: mongoose.Types.ObjectId;
+    userID: Types.ObjectId;
 }
-
-const Schema = mongoose.Schema;
 
 const BookSchema = new Schema<Book>({
     title: { 
@@ -36,8 +34,8 @@ const BookSchema = new Schema<Book>({
         required: true
     },
     userID: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }
 });
 
