@@ -1,0 +1,50 @@
+.library-books {
+  // border: 2px solid black;
+  margin: 0.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  .card {
+    border: 2px solid black;
+    background-color: grey;
+    border-radius: 1rem;
+    padding: 0.40rem;
+    width: 18rem;
+    height: 25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-title {
+    display: none;
+    width: 100%;
+    font-size: large;
+    text-align: center;
+  }
+
+  .card-image {
+    // border: 4px solid black;
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    a {
+      text-decoration: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    img {
+      // border: 2px solid black;
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

@@ -1,69 +1,70 @@
 import { useState } from 'react';
-
+import styles from '@/styles/pages/Login.module.scss';
+import Link from 'next/link';
 
 export default function LoginPage() {
+
+  const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
 
-  // const { t } = useTranslation();
-  // const loginUser = () => {
-  //   axios.post('/frontEndLogin', { username, password })
-  //     .then((res) => {
-  //       document.cookie = `s_id=${res.data.token}`;
-  //       setSettings({
-  //         language: res.data.settings.language,
-  //         'color-blindedness': res.data.settings['color-blindedness'],
-  //         font: res.data.settings.font,
-  //         fontSize: res.data.settings.fontSize,
-  //       });
-  //       setLoggedIn(true);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+  function loginUser(event: React.FormEvent) {
+    event.preventDefault();
+    console.log('logging in', user, password);
 
-  // const registerUser = () => {
-  //   axios.post('/frontEndRegister', { username, password })
-  //     .then(() => {
-  //       alert('Registration Successful, please login normally.');
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+    // add stuff to login user and verify user below
+  };
+
+  function updateInput(event: React.ChangeEvent) {
+    const { name, value } = event.currentTarget;
+    console.log(name, value);
+
+    switch (name) {
+      case 'user':
+        setUser(value);
+        break;
+
+      case 'password':
+        setPassword(value);
+        break;
+
+      default:
+        break;
+    }
+
+  }
 
   return (
-    <div className="login-section">
-      <h1>Login</h1>
-      <form className="login-form">
-        <div className="input-wrap">
-          {/* <img src="http://placecorgi.com/50/50" alt="username" /> */}
-          {/* <i className="fa-solid fa-user icon" /> */}
-          <input
-            id="username"
-            type="text"
-          // placeholder={t('login.username')}
-          // value={username}
-          // onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div className="input-wrap">
-          {/* <img src="http://placecorgi.com/50/50" alt="password" /> */}
-          {/* <i className="fa-solid fa-lock icon" /> */}
-          <input
-            id="password"
-            type="password"
-          // placeholder={t('login.password')}
-          // value={password}
-          // onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className="authentication-btns">
+    <div className='page-container'>
+      <h1 className='page-header'>Login</h1>
+      <div className={styles.login}>
+        <form onSubmit={loginUser}>
+          <label>
+            USERNAME
+            <input
+              id='username'
+              type='text'
+              placeholder='username'
+              name='user'
+              value={user}
+              onChange={updateInput}
+            />
+          </label>
+          <label>
+            PASSWORD
+            <input
+              id='password'
+              type='password'
+              placeholder='password'
+              name='password'
+              value={password}
+              onChange={updateInput}
+            />
+          </label>
           <button type='submit'>LOGIN</button>
-          {/* <button type="button" id="login-submit" onClick={() => loginUser()}>{t('login.login')}</button> */}
-          {/* <button type="button" id="register-submit" onClick={() => registerUser()}>{t('login.register')}</button> */}
-        </div>
-      </form>
+          <Link href='/'>Create Account</Link>
+          <Link href='/'>Forgot Username/Password?</Link>
+        </form>
+      </div>
     </div >
   );
 };

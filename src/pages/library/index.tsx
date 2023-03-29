@@ -1,55 +1,64 @@
 import { useState, useEffect } from 'react';
+import useSWR from 'swr';
+import SearchBar from '@/common/components/SearchBar';
+import Card from '@/common/components/Card';
+
+import type { BookType } from '@/common/types';
+import { fetcher } from '@/modules/utils';
+
+const IMAGE_NOT_FOUND_URL = 'https://e7.pngegg.com/pngimages/829/733/png-clipart-logo-brand-product-trademark-font-not-found-logo-brand.png';
+
+type ResultsType = {
+  count: number,
+  next: string | null,
+  previous: string | null,
+  results: Array<BookType>
+};
 
 export default function LibraryPage() {
 
-  const [books, setBooks] = useState<Array<BookInterface>>([]);
+  const { data, error } = useSWR<ResultsType>('/api/getbooks', fetcher);
+  const [books, setBooks] = useState<Array<BookType>>();
 
   useEffect(() => {
-    console.log('use effect invoked')
-    void fetch('api/gutenDex/getBooks')
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data)
-        const newBooks: BookInterface[] = [];
-        data.results.forEach((book) => {
-          const newBook: BookInterface = {
-            id: book.id,
-            title: book.title,
-            authors: book.authors,
-          };
-          newBooks.push(newBook);
-        });
-        console.log(newBooks)
-        setBooks(newBooks);
-      })
-      .catch((error) => (console.log('api/getBooks', error)));
-  }, []);
+    if (data) {
+      setBooks(data.results)
+    }
+  }, [data]);
 
-  interface BookInterface {
-    id: number,
-    title: string,
-    authors: Array<object>,
+  function updateBooks(results: ResultsType) {
+    const books: Array<BookType> = results.results;
+    setBooks(books);
   };
 
-  
-
   return (
-    <div>
-      <h1>Library</h1>
-      <div id='library-books-container'>
+    <div className='page-container'>
+      <h1 className='page-header'>Library</h1>
+
+      <div className='search-panel'>
+        <SearchBar resultsHandler={updateBooks} />
+        <div className='search-options'>
+        </div>
+      </div>
+
+      <div className='library-books'>
         {
-          books.map((book) => {
-            return (
-              <div key={book.id} className='library-book-div'>
-                <h2>{book.title}</h2>
-                <h4>{book.authors[0].name}</h4>
-              </div>
-            )
-          })
+          books ?
+            books.map(((book, i) => {
+              return (
+                <Card
+                  key={book.id}
+                  id={book.id}
+                  title={book.title}
+                  image={book.formats['image/jpeg'] ? book.formats['image/jpeg'] : IMAGE_NOT_FOUND_URL}
+                  link={`/reader/${book.id}`}
+                />
+              )
+            }))
+            : null
         }
       </div>
+
     </div>
   );
 }
