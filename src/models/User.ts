@@ -1,5 +1,6 @@
 import { Schema } from 'mongoose';
 import bcrypt from "bcrypt";
+
 interface User {
     username: string;
     password: string;

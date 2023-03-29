@@ -20,7 +20,6 @@ export default async function saveBook(
         res.status(500).json({ message: 'Invalid token' });
     }
 
-
     try {
        await connection();
 
