@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import styles from '@/styles/pages/Login.module.scss';
 import Link from 'next/link';
-import router from 'next/router';
+import { useRouter } from 'next/router';
 import axios from 'axios';
 export default function LoginPage() {
 
   const cookie = require('cookie-cutter');
+  const router = useRouter();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,19 +15,21 @@ export default function LoginPage() {
     event.preventDefault();
     console.log('logging in', email, password);
 
-    // add stuff to login user and verify user below
+
     axios.post('/api/MongoAPI/user/loginUser', {
       email: email,
       password: password
     })
       .then((res) => {
+        // Sets session token and redirects to reader
         cookie.set('token', res.data.token, { path: '/' });
+        router.push('/reader');
       })
   };
 
   function updateInput(event: React.ChangeEvent) {
    
-    const { name, value } = event.currentTarget;
+    const { name, value } = event.currentTarget as HTMLInputElement;
 
     switch (name) {
       case 'email':
