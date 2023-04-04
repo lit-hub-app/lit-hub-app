@@ -2,10 +2,11 @@ import { useState } from 'react';
 import styles from '@/styles/pages/Login.module.scss';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { setCookie } from 'cookies-next';
 import axios from 'axios';
+
 export default function LoginPage() {
 
-  const cookie = require('cookie-cutter');
   const router = useRouter();
 
   const [email, setEmail] = useState('');
@@ -22,7 +23,8 @@ export default function LoginPage() {
     })
       .then((res) => {
         // Sets session token and redirects to reader
-        cookie.set('token', res.data.token, { path: '/' });
+        setCookie('token', res.data.token);
+        setCookie('logged-in', true);
         router.push('/reader');
       })
   };

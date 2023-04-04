@@ -9,9 +9,10 @@ export default async function getUsers(
     try {
 
         await connection();
-        
+
         const users: Array<object> = await User.find();
         res.status(200).json(users);
+        
     } catch (error) {
         res.status(500).json({ success: false, error })
     }
