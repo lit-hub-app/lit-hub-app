@@ -17,7 +17,7 @@ export default async function getUsersBooks(
     try {
         await connection();
 
-        const books = await Book.findById(token);
+        const books = await Book.find({ userID: token });
 
         res.status(200).json({ success: true, books });
     } catch (error) {

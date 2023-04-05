@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-export default async function verifyToken(token: string) {
+export default function verifyToken(token: string) {
     interface JwtPayload {
         id: string;
     }
