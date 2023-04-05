@@ -11,13 +11,13 @@ export default async function getUsersBooks(
     const token = verifyToken(req.headers.token as string);
 
     if (!token) { 
-        res.status(500).json({ message: 'Invalid token' })
+        res.status(401).json({ message: 'Unauthorized' })
     }
 
     try {
         await connection();
 
-        const books = await Book.find({ userID: token });
+        const books = await Book.findById(token);
 
         res.status(200).json({ success: true, books });
     } catch (error) {

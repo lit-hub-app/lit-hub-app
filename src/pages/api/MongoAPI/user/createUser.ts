@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import connection from '../../../../lib/database';
 import User from '../../../../models/User';
+import Settings from '../../../../models/Settings';
 
 export default async function createUser(
     req: NextApiRequest,
@@ -20,8 +21,12 @@ export default async function createUser(
 
     try {
         await connection();
+
         const user = await User.create(body);
-        res.status(201).json({ success: true, user });
+
+        const settings = await Settings.create({userID: user._id});
+
+        res.status(201).json({ success: true, user, settings });
     }
     catch (error) {
         res.status(500).json({ success: false, error });
