@@ -2,6 +2,8 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import connection from '../../../../lib/database';
 import verifyToken from '../../../../lib/middleware';
 import User from '../../../../models/User';
+import Book from '../../../../models/Book';
+import Settings from '../../../../models/Settings';
 
 export default async function deleteUser(
     req: NextApiRequest,
@@ -17,8 +19,10 @@ export default async function deleteUser(
         await connection();
 
         const user = await User.findByIdAndDelete(token);
+        const books = await Book.deleteMany({ userID: token })
+        const settings = await Settings.findOneAndDelete({ userID: token });
 
-        if (user) {
+        if (user && books && settings) {
             res.status(200).json({ success: true,  message: 'User deleted' });
         } else {
             res.status(204).json({success: true,  message: 'User not found' });
