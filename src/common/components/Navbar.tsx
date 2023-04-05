@@ -1,20 +1,18 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import styles from '@/styles/components/Navbar.module.scss';
 import { getCookie } from 'cookies-next';
+import React from 'react';
+
 
 export default function NavBarComponent() {
-
-  const router = useRouter();
   
   const [loggedIn, setLoggedIn] = useState(false);
   
   useEffect(() => {
     console.log("Reloading")
     const cookie = getCookie('logged-in') as boolean;
-    setLoggedIn(cookie);
-    //router.reload(window.location.pathname);
+    setLoggedIn(current =>  cookie);
   }, []);
   
   return (

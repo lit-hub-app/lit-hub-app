@@ -11,6 +11,7 @@ export default function LoginPage() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
 
   function loginUser(event: React.FormEvent) {
     event.preventDefault();
@@ -28,6 +29,8 @@ export default function LoginPage() {
         router.push('/reader');
       })
   };
+
+
 
   function updateInput(event: React.ChangeEvent) {
    
