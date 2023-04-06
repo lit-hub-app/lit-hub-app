@@ -16,7 +16,7 @@ export default async function deleteBook(
     const token = verifyToken(req.headers.token as string);
 
     if (!token) {
-        res.status(500).json({ success: false, message: 'Invalid token' });
+        res.status(401).json({ success: false, message: 'Unauthorized' });
     }
 
     try {

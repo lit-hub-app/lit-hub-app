@@ -12,7 +12,7 @@ export default async function deleteUser(
     const token = verifyToken(req.headers.token as string);
 
     if (!token) {
-        res.status(500).json({ message: 'Invalid token' });
+        res.status(401).json({ message: 'Invalid token' });
     }
 
     try {
