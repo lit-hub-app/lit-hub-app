@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import useSWR from 'swr';
-import SearchBar from '@/common/components/inputs/SearchBar';
-import BookCard from '@/common/components/elements/BookCard';
+
+import { SearchBar } from '@/common/components/inputs';
+import { BookCard, Card } from '@/common/components/elements';
 
 import type { BookType } from '@/common/types';
 import { fetcher } from '@/modules/utils';
@@ -18,7 +19,7 @@ type ResultsType = {
 
 export default function LibraryPage() {
 
-  const { data, error } = useSWR<ResultsType>('/api/getbooks', fetcher);
+  const { data, error } = useSWR<ResultsType>('/api/gutendex/getbooks', fetcher);
   const [books, setBooks] = useState<Array<BookType>>();
 
   useEffect(() => {
@@ -33,23 +34,30 @@ export default function LibraryPage() {
   };
 
   return (
-    <div className='page-container'>
-      <h1 className='page-header'>Library</h1>
+    <div className={styles.libraryPage}>
 
-      <div className={styles.searchBar}>
-        <SearchBar resultsHandler={updateBooks} />
-        <div className={styles.searchOptions}>
-        </div>
+      <div id="page-header">
+        <h1>Library</h1>
+        <h2>Search for any book from Project Gutenberg!</h2>
       </div>
+
+      <SearchBar className={styles.librarySearchBar} endpoint={'/api/gutendex/search'} resultsHandler={updateBooks} />
 
       <div className={styles.libraryBooks}>
         {
           books ?
             books.map(((book, i) => {
               return (
-                <BookCard
+                // <BookCard
+                //   key={book.id}
+                //   id={book.id}
+                //   title={book.title}
+                //   image={book.formats['image/jpeg'] ? book.formats['image/jpeg'] : IMAGE_NOT_FOUND_URL}
+                //   link={`/reader/${book.id}`}
+                // />
+                <Card
                   key={book.id}
-                  id={book.id}
+                  className={styles.libraryBook}
                   title={book.title}
                   image={book.formats['image/jpeg'] ? book.formats['image/jpeg'] : IMAGE_NOT_FOUND_URL}
                   link={`/reader/${book.id}`}

@@ -6,18 +6,18 @@ type Props = {
 
 export default function TextInputComponent({ name, value, changeHandler }: Props): JSX.Element {
   return (
-    <>
+    <div className='text-input'>
       <label htmlFor={name}>
         {name.split('-').join(' ')}
       </label >
       <input
-        id={`${name}`}
         type='text'
         name={name}
         value={value}
+        // placeholder={name}
         onChange={changeHandler}
       />
-    </>
+    </div>
   );
 };
 

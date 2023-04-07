@@ -1,45 +1,44 @@
 import { useCallback, useRef, useState } from 'react';
 import axios from 'axios';
 import { GoSearch } from "react-icons/go";
-import styles from '@/styles/components/SearchBar.module.scss';
-import TextInput from './TextInput';
+import { TextInput } from '@/common/components/inputs';
+// import styles from '@/styles/components/SearchBar.module.scss';
 
 type Props = {
+  className: string,
+  endpoint: string,
   resultsHandler: Function
 };
 
-export default function SearchBarComponent({ resultsHandler }: Props) {
+export default function SearchBarComponent({ className, endpoint, resultsHandler }: Props) {
 
   const [searchKeyword, setSearchKeyword] = useState('');
 
-  const searchRef = useRef(null);
-  const [query, setQuery] = useState('');
-  const [active, setActive] = useState(false);
-  const [results, setResults] = useState([]);
+  // const searchRef = useRef(null);
+  // const [query, setQuery] = useState('');
+  // const [active, setActive] = useState(false);
+  // const [results, setResults] = useState([]);
 
   function updateSearchKeyword(event: React.ChangeEvent<HTMLInputElement>) {
-    const { name, value } = event.target;
+    const { value } = event.target;
     setSearchKeyword(value);
   };
 
   function search(event: React.SyntheticEvent) {
     event.preventDefault();
-    axios(`/api/search?query=${searchKeyword}`)
+    axios(`${endpoint}?query=${searchKeyword}`)
       .then((response) => {
         resultsHandler(response.data);
       })
-      .catch((error) => (console.log('search error', error)));
-
+      .catch((error) => (console.error('search error', error)));
   };
 
   return (
-    <div className={styles.searchBar}>
-      <form onSubmit={search}>
-        <TextInput name={'search-bar'} value={searchKeyword} changeHandler={updateSearchKeyword} />
-        <button name='submit-button' type='submit'>
-          <GoSearch size={20} />
-        </button>
-      </form>
-    </div>
+    <form className={className} onSubmit={search}>
+      <TextInput name={'search'} value={searchKeyword} changeHandler={updateSearchKeyword} />
+      <button type='submit'>
+        <GoSearch size={20} />
+      </button>
+    </form>
   )
 };

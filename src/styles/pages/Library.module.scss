@@ -1,12 +1,59 @@
-.searchBar {}
+.libraryPage {
+  border: 2px solid black;
 
-.libraryBooks {
-  // border: 2px solid black;
-  margin: 0.4rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  align-content: flex-start;
-  gap: 2rem;
+  .librarySearchBar {
+    // border: 4px solid black;
+    padding: $padding-stock;
+    display: flex;
+    justify-content: center;
+
+    label {
+      display: none;
+    }
+
+    input {
+      font-size: $font-size-stock;
+    }
+
+  }
+
+  .libraryBooks {
+    border: $border-stock;
+    max-height: 80vh;
+    overflow-y: scroll;
+    padding: $padding-stock;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    align-content: flex-start;
+    gap: 2rem;
+
+
+    .libraryBook {
+      border: $border-stock;
+      border-radius: 0.8rem;
+      background-color: $background-color;
+      padding: $padding-stock;
+      height: 24rem;
+      width: 16rem;
+      display: flex;
+      flex-direction: column;
+
+      h3 {
+        display: none;
+      }
+
+      div {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        img {
+          object-fit: contain;
+        }
+      }
+
+    }
+  }
 }

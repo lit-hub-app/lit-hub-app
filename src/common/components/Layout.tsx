@@ -9,7 +9,7 @@ export default function Layout({ children }: Props) {
   return (
     <>
       <Head>
-        <title>Lit Hub eReader</title>
+        <title>Gutendex eReader</title>
         <meta name="description" content="Lit Hub E-Reader" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
