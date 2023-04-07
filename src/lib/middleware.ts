@@ -5,6 +5,7 @@ export default function verifyToken(token: string) {
         id: string;
     }
     const secret = process.env.JWT_SECRET as string;
+    
     const decoded = jwt.verify(token, secret) as JwtPayload;
 
     return decoded.id;

@@ -1,13 +1,12 @@
-import mongoose from 'mongoose';
+import { Schema, models,  model } from 'mongoose';
 import bcrypt from "bcrypt";
+
 interface User {
     username: string;
     password: string;
     email: string;
     avatar?: string;
 }
-
-const Schema = mongoose.Schema;
 
 const UserSchema = new Schema<User>({
     username: {
@@ -27,7 +26,6 @@ const UserSchema = new Schema<User>({
     avatar: {
         type: String
     },
-    books: [] //string[bookIds] ==> _id from mongo
 });
 
 // Pre save encryption salts/hashes user passwords
@@ -54,6 +52,6 @@ UserSchema.pre('save', function (next) {
     }
 });
 
-const User = mongoose.models.User || mongoose.model("User", UserSchema);
+const User = models.User || model("User", UserSchema);
 
 export default User;
