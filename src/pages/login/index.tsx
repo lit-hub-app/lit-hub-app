@@ -1,26 +1,44 @@
 import { useState } from 'react';
 import styles from '@/styles/pages/Login.module.scss';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { setCookie } from 'cookies-next';
+import axios from 'axios';
 
 export default function LoginPage() {
 
-  const [user, setUser] = useState('');
+  const router = useRouter();
+
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
 
   function loginUser(event: React.FormEvent) {
     event.preventDefault();
-    console.log('logging in', user, password);
+    console.log('logging in', email, password);
 
-    // add stuff to login user and verify user below
+
+    axios.post('/api/MongoAPI/user/loginUser', {
+      email: email,
+      password: password
+    })
+      .then((res) => {
+        // Sets session token and redirects to reader
+        setCookie('token', res.data.token);
+        setCookie('logged-in', true);
+        router.push('/reader');
+      })
   };
 
+
+
   function updateInput(event: React.ChangeEvent) {
-    const { name, value } = event.currentTarget;
-    console.log(name, value);
+   
+    const { name, value } = event.currentTarget as HTMLInputElement;
 
     switch (name) {
-      case 'user':
-        setUser(value);
+      case 'email':
+        setEmail(value);
         break;
 
       case 'password':
@@ -39,13 +57,13 @@ export default function LoginPage() {
       <div className={styles.login}>
         <form onSubmit={loginUser}>
           <label>
-            USERNAME
+            EMAIL
             <input
-              id='username'
+              id='email'
               type='text'
-              placeholder='username'
-              name='user'
-              value={user}
+              placeholder='email'
+              name='email'
+              value={email}
               onChange={updateInput}
             />
           </label>

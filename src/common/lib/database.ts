@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import { connect } from 'mongoose'
 
 const MONGODB_URI = process.env.MONGODB_URI as string
 declare global {
@@ -27,16 +27,16 @@ async function dbConnect() {
       dbName: process.env.DATABASE_NAME,
     }
 
-    cached.promise = mongoose.connect(MONGODB_URI, options).then((mongoose) => {
+    cached.promise = connect(MONGODB_URI, options).then((mongoose) => {
       return mongoose
     })
   }
 
   try {
     cached.conn = await cached.promise
-  } catch (e) {
+  } catch (error) {
     cached.promise = null
-    throw e
+    throw error;
   }
 
   return cached.conn
