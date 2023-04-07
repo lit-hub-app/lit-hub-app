@@ -1,10 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
 
-$font-family: 'Inter';
-$font-Inter: 'Inter';
-$font-color: #000000;
 $page-header-weight: bold;
 $page-header-size: 3rem;
-$stock-border: 4px solid black;
 
-$active-color: green;
+$active-color: orange;
+$first-color: blue;
+$second-color: green;
+$third-color: red;
+$background-color: white;
+
+$font-Inter: 'Inter';
+$font-color: #000000;
+
+$font-size-small: 1rem;
+$font-size-stock: 2rem;
+$font-size-large: 3rem;
+
+$border-thin: 2px solid black;
+$border-stock: 4px solid black;
+$border-thick: 6px solid black;
+
+$padding-thin: 0.25rem;
+$padding-stock: 0.5rem;
+$padding-thick: 1.0rem;
+
+$margin-thin: 0.25rem;
+$margin-stock: 0.5rem;
+$margin-thick: 1.0rem;

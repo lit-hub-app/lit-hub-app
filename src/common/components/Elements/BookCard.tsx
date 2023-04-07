@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '@/styles/components/BookCard.module.scss';
+import styles from '@/styles/components/elements/BookCard.module.scss';
 
 type Props = {
   id: number,

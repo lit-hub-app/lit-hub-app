@@ -1,19 +1,19 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '@/styles/components/Card.module.scss';
+// import styles from '@/styles/components/elements/Card.module.scss';
 
 type Props = {
-  id: number,
+  className: string,
   title: string,
   image: string,
   link: string,
 };
 
-export default function CardComponent({ id, title, image, link }: Props) {
+export default function CardComponent({ className, title, image, link }: Props) {
   return (
-    <div className={styles.card}>
-      <h3 className={styles.cardTitle}>{title}</h3>
-      <div className={styles.cardImage}>
+    <div className={className}>
+      <h3>{title}</h3>
+      <div>
         <Link href={link}>
           <Image
             src={image}

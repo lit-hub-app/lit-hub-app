@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import useSWR from 'swr';
-import SearchBar from '@/common/components/Inputs/SearchBar';
-import BookCard from '@/common/components/Elements/BookCard';
+import SearchBar from '@/common/components/inputs/SearchBar';
+import BookCard from '@/common/components/elements/BookCard';
 
 import type { BookType } from '@/common/types';
 import { fetcher } from '@/modules/utils';

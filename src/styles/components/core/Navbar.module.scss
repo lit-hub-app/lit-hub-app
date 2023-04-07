@@ -1,0 +1,36 @@
+.navbar {
+  border: $border-stock;
+  padding: $padding-stock;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .navBrand {
+    margin-left: 2rem;
+    font-size: $font-size-large;
+    font-weight: bold;
+  }
+
+  .navMenu {
+    margin-right: 2rem;
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      gap: 2rem;
+    }
+
+    li {
+      font-size: $font-size-stock;
+      font-weight: bold;
+    }
+  }
+
+}

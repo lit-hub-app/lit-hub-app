@@ -1,0 +1,38 @@
+#homePageCards {
+  // border: $border-stock;
+  padding: $padding-stock;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10rem;
+
+  .homePageCard {
+    border: $border-thin;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1rem;
+    height: 30rem;
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h3 {
+      font-size: $font-size-large;
+      margin: 0;
+      margin-bottom: 1rem;
+    }
+
+    div {
+      // border: 2px solid black;
+      position: relative;
+      width: 20rem;
+      height: 20rem;
+
+      img {
+        padding: $padding-stock;
+      }
+    }
+  }
+
+}

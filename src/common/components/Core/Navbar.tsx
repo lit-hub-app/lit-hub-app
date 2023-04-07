@@ -1,25 +1,23 @@
-import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import styles from '@/styles/components/Navbar.module.scss';
+import Link from 'next/link';
 import { getCookie } from 'cookies-next';
-import React from 'react';
-
+import styles from '@/styles/components/core/Navbar.module.scss';
 
 export default function NavBarComponent() {
-  
+
   const [loggedIn, setLoggedIn] = useState(false);
-  
+
   useEffect(() => {
     console.log("Reloading")
     const cookie = getCookie('logged-in') as boolean;
-    setLoggedIn(current =>  cookie);
+    setLoggedIn(current => cookie);
   }, []);
-  
+
   return (
     <nav className={styles.navbar}>
-      <div className={styles.navBrand}>
-        <Link href='/'>LITHUB</Link>
-      </div>
+      {/* <div className={styles.navBrand}> */}
+      <Link className={styles.navBrand} href='/'>LITHUB</Link>
+      {/* </div> */}
       <div className={styles.navMenu}>
         <ul>
           <li>
