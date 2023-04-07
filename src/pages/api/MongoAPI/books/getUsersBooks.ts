@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connection from '../../../../lib/database';
-import Book from "../../../../models/Book";
+import Book from "../../../../common/models/Book";
 import verifyToken from "../../../../lib/middleware";
 
 export default async function getUsersBooks(
@@ -10,7 +10,7 @@ export default async function getUsersBooks(
 
     const token = verifyToken(req.headers.token as string);
 
-    if (!token) { 
+    if (!token) {
         res.status(401).json({ message: 'Unauthorized' })
     }
 

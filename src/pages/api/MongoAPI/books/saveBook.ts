@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import Book from '../../../../models/Book';
+import Book from '../../../../common/models/Book';
 import connection from "../../../../lib/database";
 import jwt from "jsonwebtoken";
 import verifyToken from '../../../../lib/middleware';

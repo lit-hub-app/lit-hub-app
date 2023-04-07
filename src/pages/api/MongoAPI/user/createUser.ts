@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import connection from '../../../../lib/database';
 import User from '../../../../models/User';
-import Settings from '../../../../models/Settings';
+import Settings from '../../../../common/models/Settings';
 
 export default async function createUser(
     req: NextApiRequest,
@@ -14,7 +14,7 @@ export default async function createUser(
     }
     // Password Validation
     const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
-    
+
     if (!PASSWORD_REGEX.test(body.password)) {
         return res.status(401).json({ error: 'Password is too weak.' });
     }
@@ -24,7 +24,7 @@ export default async function createUser(
 
         const user = await User.create(body);
 
-        const settings = await Settings.create({userID: user._id});
+        const settings = await Settings.create({ userID: user._id });
 
         res.status(201).json({ success: true, user, settings });
     }

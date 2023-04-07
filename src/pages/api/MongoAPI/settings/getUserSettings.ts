@@ -1,19 +1,19 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connection from '../../../../lib/database';
-import Settings from "../../../../models/Settings";
+import Settings from "../../../../common/models/Settings";
 import verifyToken from "../../../../lib/middleware";
 
 export default async function getUsersSettings(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
-     const token = verifyToken(req.headers.token as string);
-     
-     if (!token) {
-        res.status(401).json({message: 'Unauthorized'});
-     }
+    const token = verifyToken(req.headers.token as string);
 
-     try {
+    if (!token) {
+        res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    try {
         await connection();
 
         const settings = await Settings.findOne({ userID: token });
@@ -25,6 +25,6 @@ export default async function getUsersSettings(
         }
 
     } catch (error) {
-        res.status(500).json({success: false, error})
+        res.status(500).json({ success: false, error })
     }
 }

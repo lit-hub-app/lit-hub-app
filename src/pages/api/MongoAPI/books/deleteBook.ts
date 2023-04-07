@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import connection from '../../../../lib/database';
 import verifyToken from '../../../../lib/middleware';
-import Book from '../../../../models/Book';
+import Book from '../../../../common/models/Book';
 
 export default async function deleteBook(
     req: NextApiRequest,
@@ -25,12 +25,12 @@ export default async function deleteBook(
         const book = await Book.findByIdAndDelete(bookID);
 
         if (book) {
-            res.status(200).json({success: true, book});
+            res.status(200).json({ success: true, book });
         } else {
-            res.status(204).json({success: false, message: 'Book not found'});
+            res.status(204).json({ success: false, message: 'Book not found' });
         }
 
-    } catch(error) {
+    } catch (error) {
         res.status(500).json({ success: false, error });
     }
 }

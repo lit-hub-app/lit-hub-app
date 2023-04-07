@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connection from '../../../../lib/database';
-import Settings from "../../../../models/Settings";
+import Settings from "../../../../common/models/Settings";
 import verifyToken from "../../../../lib/middleware";
 
 export default async function updateSettings(
@@ -10,17 +10,17 @@ export default async function updateSettings(
     const token = verifyToken(req.headers.token as string);
 
     if (!token) {
-        res.status(401).json({message: 'Unauthorized'});
+        res.status(401).json({ message: 'Unauthorized' });
     }
 
     try {
         await connection();
-        
+
         const { body } = req;
         const settings = await Settings.findOneAndUpdate(body);
-        
+
         if (settings) {
-            res.status(200).json({success: true, settings });
+            res.status(200).json({ success: true, settings });
         } else {
             res.status(404).json({ success: false, message: 'Settings not found' });
         }

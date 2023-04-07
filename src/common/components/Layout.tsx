@@ -1,4 +1,4 @@
-import Navbar from './Navbar';
+import Navbar from './Core/Navbar';
 import Head from 'next/head';
 
 type Props = {

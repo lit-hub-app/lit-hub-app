@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import connection from '../../../../lib/database';
-import Book from '../../../../models/Book';
+import Book from '../../../../common/models/Book';
 import verifyToken from '../../../../lib/middleware';
 
 export default async function getBook(
