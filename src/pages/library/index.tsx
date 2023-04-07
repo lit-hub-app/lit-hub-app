@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import useSWR from 'swr';
-import SearchBar from '@/common/components/SearchBar';
-import Card from '@/common/components/Card';
+import SearchBar from '@/common/components/Inputs/SearchBar';
+import BookCard from '@/common/components/BookCard';
 
 import type { BookType } from '@/common/types';
 import { fetcher } from '@/modules/utils';
+import styles from '@/styles/pages/Library.module.scss';
 
 const IMAGE_NOT_FOUND_URL = 'https://e7.pngegg.com/pngimages/829/733/png-clipart-logo-brand-product-trademark-font-not-found-logo-brand.png';
 
@@ -35,18 +36,18 @@ export default function LibraryPage() {
     <div className='page-container'>
       <h1 className='page-header'>Library</h1>
 
-      <div className='search-panel'>
+      <div className={styles.searchBar}>
         <SearchBar resultsHandler={updateBooks} />
-        <div className='search-options'>
+        <div className={styles.searchOptions}>
         </div>
       </div>
 
-      <div className='library-books'>
+      <div className={styles.libraryBooks}>
         {
           books ?
             books.map(((book, i) => {
               return (
-                <Card
+                <BookCard
                   key={book.id}
                   id={book.id}
                   title={book.title}
@@ -61,4 +62,4 @@ export default function LibraryPage() {
 
     </div>
   );
-}
+};
