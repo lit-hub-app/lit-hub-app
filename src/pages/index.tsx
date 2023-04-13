@@ -8,7 +8,6 @@ const E_READER_IMAGE_URL = 'https://upload.wikimedia.org/wikipedia/commons/thumb
 const Home: NextPage = () => {
 
   return (
-
     <div className={styles.homePage}>
       <div id="page-header">
         <h1>GUTEN READER</h1>

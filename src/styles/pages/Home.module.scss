@@ -23,17 +23,16 @@
       margin-bottom: 1rem;
     }
 
-    div {
-      // border: 2px solid black;
+    a {
       position: relative;
       width: 100%;
       height: 100%;
 
       img {
-        padding: $padding-stock;
         object-fit: contain;
       }
     }
+
   }
 
 }

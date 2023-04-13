@@ -41,10 +41,11 @@
       flex-direction: column;
 
       h3 {
-        display: none;
+        // display: none;
+        text-align: center;
       }
 
-      div {
+      a {
         position: relative;
         width: 100%;
         height: 100%;
@@ -57,3 +58,9 @@
     }
   }
 }
+
+
+// react_devtools_backend.js:2655 Image with src 
+// "https://www.gutenberg.org/cache/epub/6761/pg6761.cover.medium.jpg" 
+// has "fill" and parent element with invalid "position". 
+// Provided "static" should be one of absolute,fixed,relative.

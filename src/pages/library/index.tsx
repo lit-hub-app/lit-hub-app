@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 
 import { SearchBar } from '@/common/components/inputs';
-import { BookCard, Card } from '@/common/components/elements';
+import { Card } from '@/common/components/elements';
 
 import type { BookType } from '@/common/types';
 import { fetcher } from '@/modules/utils';
@@ -47,14 +47,8 @@ export default function LibraryPage() {
         {
           books ?
             books.map(((book, i) => {
+              console.log(book.id)
               return (
-                // <BookCard
-                //   key={book.id}
-                //   id={book.id}
-                //   title={book.title}
-                //   image={book.formats['image/jpeg'] ? book.formats['image/jpeg'] : IMAGE_NOT_FOUND_URL}
-                //   link={`/reader/${book.id}`}
-                // />
                 <Card
                   key={book.id}
                   className={styles.libraryBook}
