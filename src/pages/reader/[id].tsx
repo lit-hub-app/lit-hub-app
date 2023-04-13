@@ -11,7 +11,6 @@ type Props = {
 
 export default function Book({ html }: Props) {
   // console.log('Book', html)
-
   // const { data, error } = useSWR(`/api/getbook?id=${id}`, fetcher)
   // console.log('Book', data);
 

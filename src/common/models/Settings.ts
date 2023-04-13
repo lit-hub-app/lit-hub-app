@@ -4,6 +4,7 @@ interface Settings {
     language: string;
     font: string;
     fontSize: number;
+    offlineEnabled: boolean;
     userID: Schema.Types.ObjectId;
 }
 
@@ -19,6 +20,10 @@ const SettingsSchema = new Schema<Settings>({
     fontSize: {
         type: Number,
         default: 24
+    },
+    offlineEnabled: {
+        type: Boolean,
+        default: false
     },
     userID: {
         type: Schema.Types.ObjectId,
