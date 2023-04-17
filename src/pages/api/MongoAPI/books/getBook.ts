@@ -7,17 +7,17 @@ export default async function getBook(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
-    const { id } = req.query;
-
-    const token = verifyToken(req.headers.token as string);
-
-    if (!token) {
-        res.status(401).json({ success: false, message: 'Unauthorized' });
-    }
-
+    
     try {
         await connection();
-
+        
+        const token = verifyToken(req.headers.token as string);
+        
+        if (!token) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+        
+        const { id } = req.query;
         const book = await Book.findById(id);
 
         if (book) {

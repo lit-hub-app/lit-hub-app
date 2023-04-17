@@ -8,16 +8,16 @@ export default async function saveBook(
     req: NextApiRequest,
     res: NextApiResponse,
 ) {
-    const { body } = req;
-
-    const token = verifyToken(req.headers.token as string);
-
-    if (!token) {
-        res.status(401).json({ success: false, message: 'Unauthorized' });
-    }
-
     try {
+        const token = verifyToken(req.headers.token as string);
+        
+        if (!token) {
+            res.status(401).json({ success: false, message: 'Unauthorized' });
+        }
+        
         await connection();
+        
+        const { body } = req;
         const data = {
             title: body.title,
             author: body.author,

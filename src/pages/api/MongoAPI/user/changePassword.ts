@@ -7,17 +7,16 @@ export default async function changePassword(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
-    const { password } = req.body;
-
-    const token = verifyToken(req.headers.token as string);
-
-    if (!token) {
-        res.status(401).json({ success: false, message: "Invalid token" });
-    }
-
     try {
+        const token = verifyToken(req.headers.token as string);
+        
+        if (!token) {
+            res.status(401).json({ success: false, message: "Invalid token" });
+        }
+        
         await connection();
         
+        const { password } = req.body;
         const user = await User.findById(token);
 
         // Specifically using save over findOneAndUpdate

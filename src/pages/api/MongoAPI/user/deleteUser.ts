@@ -9,13 +9,14 @@ export default async function deleteUser(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
-    const token = verifyToken(req.headers.token as string);
-
-    if (!token) {
-        res.status(401).json({ message: 'Invalid token' });
-    }
-
+    
     try {
+        const token = verifyToken(req.headers.token as string);
+    
+        if (!token) {
+            res.status(401).json({ message: 'Invalid token' });
+        }
+        
         await connection();
 
         const user = await User.findByIdAndDelete(token);

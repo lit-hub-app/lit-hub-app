@@ -7,13 +7,13 @@ export default async function getUsersSettings(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
-     const token = verifyToken(req.headers.token as string);
-     
-     if (!token) {
-        res.status(401).json({message: 'Unauthorized'});
-     }
+    try {
+         const token = verifyToken(req.headers.token as string);
+         
+         if (!token) {
+            res.status(401).json({message: 'Unauthorized'});
+         }
 
-     try {
         await connection();
 
         const settings = await Settings.findOne({ userID: token });

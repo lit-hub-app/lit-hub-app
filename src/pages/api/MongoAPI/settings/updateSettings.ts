@@ -6,14 +6,15 @@ import verifyToken from "../../../../lib/middleware";
 export default async function updateSettings(
     req: NextApiRequest,
     res: NextApiResponse
-) {
-    const token = verifyToken(req.headers.token as string);
+    
+    ) {
+        try {
+        
+        const token = verifyToken(req.headers.token as string);
+        if (!token) {
+            res.status(401).json({message: 'Unauthorized'});
+        }
 
-    if (!token) {
-        res.status(401).json({message: 'Unauthorized'});
-    }
-
-    try {
         await connection();
         
         const { body } = req;

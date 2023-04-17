@@ -7,21 +7,16 @@ export default async function deleteBook(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
-    interface JwtPayload {
-        id: string;
-    }
-
-    const { bookID } = req.query;
-
-    const token = verifyToken(req.headers.token as string);
-
-    if (!token) {
-        res.status(401).json({ success: false, message: 'Unauthorized' });
-    }
-
     try {
+        const token = verifyToken(req.headers.token as string);
+
+        if (!token) {
+        return res.status(401).json({ message: 'Unauthorized' });
+        }
+        
         await connection();
 
+        const { bookID } = req.query;
         const book = await Book.findByIdAndDelete(bookID);
 
         if (book) {
