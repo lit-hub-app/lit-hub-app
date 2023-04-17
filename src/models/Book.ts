@@ -1,4 +1,4 @@
-import { Schema, models, model } from 'mongoose'
+import { Schema, models, model, Document } from 'mongoose'
 
 interface Book {
     title: string;
@@ -9,6 +9,8 @@ interface Book {
     text: string;
     userID: Schema.Types.ObjectId;
 }
+
+export interface BookDocument extends Book, Document {};
 
 const BookSchema = new Schema<Book>({
     title: { 

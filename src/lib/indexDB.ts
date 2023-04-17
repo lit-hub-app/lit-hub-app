@@ -17,10 +17,10 @@ export class localBookStore extends Dexie {
   constructor() {
     super('localBookStore');
     this.version(1).stores({
-      book: '++_id, title, author' // Primary key and indexed props
+      library: '++_id, title, author' // Primary key and indexed props
     });
   }
 }
-const indexDB = new localBookStore();
+const indexedDB = new localBookStore();
 
-export default indexDB;
+export default indexedDB;
