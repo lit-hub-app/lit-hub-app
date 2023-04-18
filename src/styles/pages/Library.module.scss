@@ -36,11 +36,11 @@
     align-content: flex-start;
     gap: 2rem;
 
-    .libraryBookCard {
+    .libraryBook {
       border: $border-stock;
       border-radius: $border-radius-xlarge;
       background-color: $color-library-book-background;
-      padding: $padding-stock;
+      padding: $padding-thin;
       width: 18rem;
       height: 24rem;
       display: flex;
@@ -54,27 +54,36 @@
         margin-bottom: $margin-thin;
       }
 
-      a {
-        position: relative;
+      button {
+        border: $border-stock;
+        border-radius: $border-radius-xlarge;
+        background-color: $color-background;
         width: 100%;
         height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        padding: $padding-stock;
+      }
 
-        img {
-          border: $border-stock;
-          border-radius: $border-radius-xlarge;
-          background-color: #ffffff;
-          padding: $padding-thin;
+      img {
+        // border: $border-stock;
+        // border-radius: $border-radius-xlarge;
+        // background-color: #ffffff;
+        // padding: $padding-thin;
 
-          object-fit: contain;
-          width: 100%;
-          height: 100%;
-        }
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
       }
 
     }
+  }
+
+  .bookModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border: $border-test-red;
+    background-color: white;
+    height: 100%;
+    width: 100%;
   }
 }

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
 import { SearchBar } from '@/common/components/inputs';
-import { Card } from '@/common/components/elements';
+import { LibraryBook, BookModal } from '@/common/components/elements';
 
-import { useGetBooksFromGuten } from '@/common/hooks';
+import { useGetGutenBooks } from '@/common/hooks';
 import type { GutenBookType, GutenResultsType, LibraryBookType } from '@/common/types';
 
 import styles from '@/styles/pages/Library.module.scss';
@@ -12,8 +12,12 @@ const IMAGE_NOT_FOUND_URL = 'https://e7.pngegg.com/pngimages/829/733/png-clipart
 
 export default function LibraryPage() {
 
-  const { booksData, booksError, booksLoading, mutateBooks } = useGetBooksFromGuten();
+  const { booksData, booksError, booksLoading, mutateBooks } = useGetGutenBooks();
   const [books, setBooks] = useState<Array<GutenBookType>>();
+
+  const [showBook, setShowBook] = useState<boolean>(false);
+  const [currentBook, setCurrentBook] = useState<string>('');
+  const [bookUrl, setBookUrl] = useState<string>('');
 
   useEffect(() => {
     if(booksData) {
@@ -25,17 +29,23 @@ export default function LibraryPage() {
           id: id,
           title: title.split(/(:|;|—)/, 1), // for some reason '—' is not '-'
           cover: formats['image/jpeg']
-        }
-        console.log(_book)
-        _books.push(_book)
+        };
+        _books.push(_book);
       }
-      setBooks(_books)
+      setBooks(_books);
     }
   }, [booksData]);
 
   function updateBooks(results: GutenResultsType) {
     const books: Array<GutenBookType> = results.results;
     mutateBooks(booksData);
+  };
+
+  function openBook(event: React.MouseEvent<HTMLButtonElement>) {
+    const { value } = event.currentTarget;
+    console.log('open book', value);
+    setShowBook(true);
+    setCurrentBook(value);
   };
 
   if (booksError) return <div>Failed to fetch books.</div>
@@ -64,17 +74,24 @@ export default function LibraryPage() {
           books ?
             books.map(((book) => {
               return (
-                <Card
+                <LibraryBook
                   key={book.id}
-                  className={styles.libraryBookCard}
+                  bookId={book.id}
+                  className={styles.libraryBook}
                   title={book.title}
                   image={book.cover ? book.cover : IMAGE_NOT_FOUND_URL}
-                  link={`/reader/${book.id}`}
+                  clickHandler={openBook}
                 />
               )
             }))
             : null
         }
+        <BookModal 
+          showBook={showBook}
+          className={styles.bookModal}
+          bookId={currentBook}
+          bookUrl={}
+        />
       </div>
 
     </div>

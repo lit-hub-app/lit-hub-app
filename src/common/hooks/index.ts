@@ -1,5 +1,7 @@
-import useGetBooksFromGuten from './useGetBooksFromGuten';
+import useGetGutenBooks from './useGetGutenBooks';
+import useGetGutenBook from './useGetGutenBook';
 
 export {
-  useGetBooksFromGuten,
+  useGetGutenBooks,
+  useGetGutenBook,
 };

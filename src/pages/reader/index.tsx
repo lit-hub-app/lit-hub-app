@@ -1,17 +1,17 @@
-import type { BookType, PersonType } from '@/common/types';
+import styles from '@/styles/pages/Reader.module.scss';
 
 type Props = {
   book: string,
-}
+};
 
 export default function ReaderPage({ book }: Props) {
 
-  console.log('Reader', book)
-
   return (
-    <div className='page-container'>
-      <h1 className='page-header'>Reader</h1>
-      <h2>Go to the library and find a book!</h2>
+    <div className={styles.readerPage}>
+    <div className={styles.readerPageHeader}>
+      <h1>Reader</h1>
+      <h2>Login or create an account to see your books!</h2>
+    </div>
     </div>
   );
 }

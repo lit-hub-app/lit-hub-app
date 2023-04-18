@@ -2,7 +2,6 @@ import { useCallback, useRef, useState } from 'react';
 import axios from 'axios';
 import { GoSearch } from "react-icons/go";
 import { TextInput } from '@/common/components/inputs';
-// import styles from '@/styles/components/SearchBar.module.scss';
 
 type Props = {
   className: string,
