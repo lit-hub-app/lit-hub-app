@@ -32,8 +32,8 @@
     .libraryBook {
       border: $border-stock;
       border-radius: 0.8rem;
-      background-color: #ffffff;
-      padding: $padding-stock;
+      background-color: #5E4E3C;
+      // padding: $padding-stock;
       height: 24rem;
       width: 16rem;
       display: flex;
@@ -41,6 +41,7 @@
 
       h3 {
         text-align: center;
+        margin: $margin-thin;
       }
 
       a {
@@ -49,6 +50,7 @@
         height: 100%;
 
         img {
+          border: $border-stock;
           object-fit: contain;
         }
       }

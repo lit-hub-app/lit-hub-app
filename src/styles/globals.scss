@@ -11,6 +11,7 @@ html {
 
 body {
   background: $color-background;
+  margin: 0;
   height: 100vh;
   font-family: $page-font;
   font-size: 100%;
@@ -20,11 +21,9 @@ body {
   height: 100%;
 }
 
-
 main {
   background-color: $color-background;
   height: 100%;
-  padding: 10px;
   display: flex;
   gap: $gap-stock;
 }

@@ -1,6 +1,7 @@
 .navbar {
   border: $border-stock;
   padding: $padding-stock;
+  background-color: #26363B;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,12 +9,12 @@
 
   a {
     text-decoration: none;
-    color: black;
+    color: $color-font;
   }
 
   .navBrand {
     margin-left: 2rem;
-    font-size: $font-size-large;
+    font-size: $font-size-xxlarge;
     font-weight: bold;
   }
 
@@ -28,8 +29,9 @@
     }
 
     li {
-      font-size: $font-size-stock;
+      font-size: $font-size-xlarge;
       font-weight: bold;
+      color: $color-font;
     }
   }
 
