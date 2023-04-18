@@ -1,8 +1,7 @@
 .libraryPage {
-  border: 2px solid black;
+  border: $border-thin;
 
   .librarySearchBar {
-    // border: 4px solid black;
     padding: $padding-stock;
     display: flex;
     justify-content: center;
@@ -19,8 +18,8 @@
 
   .libraryBooks {
     border: $border-stock;
-    max-height: 80vh;
-    overflow-y: scroll;
+    // max-height: 80vh;
+    // overflow-y: scroll;
     padding: $padding-stock;
     display: flex;
     flex-wrap: wrap;
@@ -33,7 +32,7 @@
     .libraryBook {
       border: $border-stock;
       border-radius: 0.8rem;
-      background-color: $background-color;
+      background-color: #ffffff;
       padding: $padding-stock;
       height: 24rem;
       width: 16rem;
@@ -41,7 +40,6 @@
       flex-direction: column;
 
       h3 {
-        // display: none;
         text-align: center;
       }
 
@@ -58,9 +56,3 @@
     }
   }
 }
-
-
-// react_devtools_backend.js:2655 Image with src 
-// "https://www.gutenberg.org/cache/epub/6761/pg6761.cover.medium.jpg" 
-// has "fill" and parent element with invalid "position". 
-// Provided "static" should be one of absolute,fixed,relative.

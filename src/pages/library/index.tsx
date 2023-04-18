@@ -4,33 +4,35 @@ import useSWR from 'swr';
 import { SearchBar } from '@/common/components/inputs';
 import { Card } from '@/common/components/elements';
 
-import type { BookType } from '@/common/types';
-import { fetcher } from '@/modules/utils';
+import { useGetBooksFromGuten } from '@/common/hooks';
+import type { GutenBookType, GutenResultsType, LibraryBookType } from '@/common/types';
+// import { fetcher } from '@/common/utils';
+
 import styles from '@/styles/pages/Library.module.scss';
 
 const IMAGE_NOT_FOUND_URL = 'https://e7.pngegg.com/pngimages/829/733/png-clipart-logo-brand-product-trademark-font-not-found-logo-brand.png';
 
-type ResultsType = {
-  count: number,
-  next: string | null,
-  previous: string | null,
-  results: Array<BookType>
-};
-
 export default function LibraryPage() {
 
-  const { data, error } = useSWR<ResultsType>('/api/gutendex/getbooks', fetcher);
-  const [books, setBooks] = useState<Array<BookType>>();
+  const { booksData, booksError, booksLoading, mutateBooks } = useGetBooksFromGuten();
+  const [books, setBooks] = useState<Array<GutenBookType>>();
+
+  // const { data, error } = useSWR<GutenResultsType>('/api/gutendex/getbooks', fetcher);
+  // console.log('library', booksData)
 
   useEffect(() => {
-    if (data) {
-      setBooks(data.results)
+    if(booksData) {
+      // const results = booksData.results;
+      // for (let i in results) {
+        // const { id, title, authors, formats, subjects} = results[i];
+      // }
+      setBooks(booksData.results)
     }
-  }, [data]);
+  }, [booksData]);
 
-  function updateBooks(results: ResultsType) {
-    const books: Array<BookType> = results.results;
-    setBooks(books);
+  function updateBooks(results: GutenResultsType) {
+    const books: Array<GutenBookType> = results.results;
+    mutateBooks(booksData);
   };
 
   return (
@@ -41,12 +43,16 @@ export default function LibraryPage() {
         <h2>Search for any book from Project Gutenberg!</h2>
       </div>
 
-      <SearchBar className={styles.librarySearchBar} endpoint={'/api/gutendex/search'} resultsHandler={updateBooks} />
+      <SearchBar
+        className={styles.librarySearchBar}
+        endpoint={'/api/gutendex/search'}
+        resultsHandler={updateBooks}
+      />
 
       <div className={styles.libraryBooks}>
         {
           books ?
-            books.map(((book, i) => {
+            books.map(((book) => {
               console.log(book.id)
               return (
                 <Card

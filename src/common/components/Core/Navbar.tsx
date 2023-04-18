@@ -8,7 +8,6 @@ export default function NavBarComponent() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    console.log("Reloading")
     const cookie = getCookie('logged-in') as boolean;
     setLoggedIn(current => cookie);
   }, []);

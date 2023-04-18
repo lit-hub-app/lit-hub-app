@@ -1,10 +1,10 @@
 import PersonType from './PersonType';
 
-type BookType = {
+type GutenBookType = {
   id: number,
   title: string,
-  subjects: Array<string>,
   authors: Array<PersonType>,
+  subjects: Array<string>,
   translators: Array<PersonType>,
   bookshelves: Array<string>,
   languages: Array<string>,
@@ -23,4 +23,4 @@ type BookType = {
   download_count: number
 };
 
-export default BookType;
+export default GutenBookType;

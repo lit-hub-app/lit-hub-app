@@ -1,11 +1,6 @@
-#__next {
-  height: 100vh;
-}
 
 html {
   box-sizing: border-box;
-  font-size: 62.5%;
-  font-family: $font-Inter;
 }
 
 *,
@@ -15,11 +10,24 @@ html {
 }
 
 body {
-  background: $background-color;
-  margin: 0;
+  background: $color-background;
+  height: 100vh;
+  font-family: $page-font;
+  font-size: 100%;
 }
 
-main {}
+#__next {
+  height: 100%;
+}
+
+
+main {
+  background-color: $color-background;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  gap: $gap-stock;
+}
 
 button {
   svg {
@@ -30,7 +38,7 @@ button {
 button:hover,
 button:focus {
   cursor: pointer;
-  color: $active-color;
+  color: $color-active;
 }
 
 #page-container {
@@ -44,8 +52,7 @@ button:focus {
 footer {
   border: $border-stock;
   text-align: center;
-  font-size: $page-header-size;
-  // position: fixed;
+  font-size: $font-size-large;
   bottom: 0;
   width: 100%;
 }

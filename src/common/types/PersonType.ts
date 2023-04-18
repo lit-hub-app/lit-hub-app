@@ -1,6 +1,6 @@
 type PersonType = {
-  birth_year: number | null,
-  death_year: number | null,
+  birth_year: number,
+  death_year: number,
   name: string
 };
 
