@@ -10,14 +10,17 @@
 
 
 $font-Inter: 'Inter';
-$page-font: 'Courier New', Courier, monospace;
+// $page-font: 'Courier New', Courier, monospace;
+$page-font: 'Inter';
 
 $color-primary: #2C3040;
 $color-secondary: #6f89a2;
 $color-font: #020202;
 
-$color-background: #01607F;
+$color-background: #ffffff;
+$color-navbar-background: #6f89a2;
 $color-panel-background: #ffffff;
+$color-library-book-background: #706f6f;
 
 $color-input-background: #ffffff;
 $color-button-background: #444422;
@@ -49,6 +52,8 @@ $border-test-red: 2px solid red;
 $border-radius-small: 0.2rem;
 $border-radius-stock: 0.4rem;
 $border-radius-large: 0.6rem;
+$border-radius-xlarge: 0.8rem;
+$border-radius-xxlarge: 1.0rem;
 
 $padding-thin: 0.25rem;
 $padding-stock: 0.5rem;

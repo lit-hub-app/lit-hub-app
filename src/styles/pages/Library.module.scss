@@ -1,7 +1,13 @@
 .libraryPage {
-  border: $border-thin;
+
+  .libraryPageHeader {
+    // border: $border-stock;
+    text-align: center;
+  }
+
 
   .librarySearchBar {
+    // border: $border-thin;
     padding: $padding-stock;
     display: flex;
     justify-content: center;
@@ -11,13 +17,20 @@
     }
 
     input {
-      font-size: $font-size-stock;
+      font-size: $font-size-xxlarge;
+    }
+
+    button {
+      margin-left: $margin-stock;
+      font-size: $font-size-xxlarge;
+      display: flex;
+      align-items: center;
     }
 
   }
 
   .libraryBooks {
-    border: $border-stock;
+    // border: $border-stock;
     // max-height: 80vh;
     // overflow-y: scroll;
     padding: $padding-stock;
@@ -31,27 +44,38 @@
 
     .libraryBook {
       border: $border-stock;
-      border-radius: 0.8rem;
-      background-color: #5E4E3C;
-      // padding: $padding-stock;
+      border-radius: $border-radius-xlarge;
+      background-color: $color-library-book-background;
+      padding: $padding-stock;
       height: 24rem;
       width: 16rem;
       display: flex;
       flex-direction: column;
 
       h3 {
+        font-size: $font-size-large;
         text-align: center;
-        margin: $margin-thin;
+        margin: 0;
+        margin-bottom: $margin-thin;
       }
 
       a {
+        border: $border-test-red;
         position: relative;
         width: 100%;
         height: 100%;
+        display: flex;
+        flex-direction: column;
 
         img {
-          border: $border-stock;
+          border: $border-test-blue;
           object-fit: contain;
+          width: auto;
+          height: auto;
+          max-width: 50%;
+          max-height: 50%;
+          // margin-top: auto;
+          // margin-bottom: $margin-thin;
         }
       }
 

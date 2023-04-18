@@ -37,7 +37,7 @@ export default function SearchBarComponent({ className, endpoint, resultsHandler
     <form className={className} onSubmit={search}>
       <TextInput name={'search'} value={searchKeyword} changeHandler={updateSearchKeyword} />
       <button type='submit'>
-        <GoSearch size={20} />
+        <GoSearch />
       </button>
     </form>
   )

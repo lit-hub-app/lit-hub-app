@@ -18,9 +18,9 @@ export default function Layout({ children }: Props) {
       <Navbar />
 
       <main>
-        <div id="page-container">
+        {/* <div id="page-container"> */}
           {children}
-        </div>
+        {/* </div> */}
       </main>
 
       {/* <Footer /> */}

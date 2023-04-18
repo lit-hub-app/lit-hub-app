@@ -1,7 +1,7 @@
 .navbar {
   border: $border-stock;
   padding: $padding-stock;
-  background-color: #26363B;
+  background-color: $color-navbar-background;
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -1,4 +1,16 @@
-#homePageCards {
+.homePage {
+  // border: $border-stock;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.homePageHeader {
+  // border: $border-stock;
+  text-align: center;
+}
+
+.homePageCards {
   padding: $padding-stock;
   display: flex;
   align-items: center;
@@ -6,10 +18,10 @@
   gap: 10rem;
 
   .homePageCard {
-    border: $border-thin;
+    border: $border-stock;
     background-color: white;
-    border-radius: 1rem;
-    padding: 1rem;
+    border-radius: $border-radius-xlarge;
+    padding: $padding-thick;
     height: 30rem;
     width: 20rem;
     display: flex;
@@ -17,7 +29,7 @@
     align-items: center;
 
     h3 {
-      font-size: $font-size-large;
+      font-size: $font-size-xxlarge;
       margin: 0;
       margin-bottom: 1rem;
     }
@@ -29,6 +41,8 @@
 
       img {
         object-fit: contain;
+        width: 100%;
+        height: 100%;
       }
     }
 

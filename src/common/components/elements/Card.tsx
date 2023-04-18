@@ -9,20 +9,20 @@ type Props = {
 };
 
 export default function CardComponent({ className, title, image, link }: Props) {
-  console.log('Card', link)
   return (
     <div className={className}>
       <h3>{title}</h3>
-      {/* <div> */}
       <Link href={link}>
         <Image
           src={image}
           alt='Card image not found!'
-          fill
-          sizes="48w"
+          priority={true}
+          width='300'
+          height={'300'}
+          // fill
+          // sizes="(max-width: 768px) 100%"
         />
       </Link>
-      {/* </div> */}
     </div>
   )
 };

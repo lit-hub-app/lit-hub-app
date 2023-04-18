@@ -9,11 +9,11 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.homePage}>
-      <div id="page-header">
+      <div className={styles.homePageHeader}>
         <h1>GUTEN READER</h1>
         <h2> Welcome reader!</h2>
       </div>
-      <div id={styles.homePageCards}>
+      <div className={styles.homePageCards}>
         <Card className={styles.homePageCard} title={'Library'} image={LIBRARY_IMAGE_URL} link={'/library'} />
         <Card className={styles.homePageCard} title={'Reader'} image={E_READER_IMAGE_URL} link={'/reader'} />
       </div>
