@@ -1,13 +1,11 @@
 .libraryPage {
+  width: 100%;
 
   .libraryPageHeader {
-    // border: $border-stock;
     text-align: center;
   }
 
-
   .librarySearchBar {
-    // border: $border-thin;
     padding: $padding-stock;
     display: flex;
     justify-content: center;
@@ -30,9 +28,6 @@
   }
 
   .libraryBooks {
-    // border: $border-stock;
-    // max-height: 80vh;
-    // overflow-y: scroll;
     padding: $padding-stock;
     display: flex;
     flex-wrap: wrap;
@@ -41,41 +36,42 @@
     align-content: flex-start;
     gap: 2rem;
 
-
-    .libraryBook {
+    .libraryBookCard {
       border: $border-stock;
       border-radius: $border-radius-xlarge;
       background-color: $color-library-book-background;
       padding: $padding-stock;
+      width: 18rem;
       height: 24rem;
-      width: 16rem;
       display: flex;
-      flex-direction: column;
 
       h3 {
-        font-size: $font-size-large;
+        display: none;
+        border: $border-thin;
+        font-size: $font-size-stock;
         text-align: center;
         margin: 0;
         margin-bottom: $margin-thin;
       }
 
       a {
-        border: $border-test-red;
         position: relative;
         width: 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
         img {
-          border: $border-test-blue;
+          border: $border-stock;
+          border-radius: $border-radius-xlarge;
+          background-color: #ffffff;
+          padding: $padding-thin;
+
           object-fit: contain;
-          width: auto;
-          height: auto;
-          max-width: 50%;
-          max-height: 50%;
-          // margin-top: auto;
-          // margin-bottom: $margin-thin;
+          width: 100%;
+          height: 100%;
         }
       }
 

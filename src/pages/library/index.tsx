@@ -15,16 +15,12 @@ export default function LibraryPage() {
   const { booksData, booksError, booksLoading, mutateBooks } = useGetBooksFromGuten();
   const [books, setBooks] = useState<Array<GutenBookType>>();
 
-  // const { data, error } = useSWR<GutenResultsType>('/api/gutendex/getbooks', fetcher);
-  // console.log('library', booksData)
-
   useEffect(() => {
     if(booksData) {
       const results = booksData.results;
       const _books = [];
       for (let i in results) {
         const { id, title, formats} = results[i];
-        // console.log(title.split(/(:|;)/, 1), title, formats)
         const _book = {
           id: id,
           title: title.split(/(:|;|—)/, 1), // for some reason '—' is not '-'
@@ -36,10 +32,13 @@ export default function LibraryPage() {
       setBooks(_books)
     }
   }, [booksData]);
+
   function updateBooks(results: GutenResultsType) {
     const books: Array<GutenBookType> = results.results;
     mutateBooks(booksData);
   };
+
+  if (booksError) return <div>Failed to fetch books.</div>
 
   return (
     <div className={styles.libraryPage}>
@@ -57,12 +56,17 @@ export default function LibraryPage() {
 
       <div className={styles.libraryBooks}>
         {
+          booksLoading ?
+          <h2>Getting books...</h2>
+          : <></>
+        }
+        {
           books ?
             books.map(((book) => {
               return (
                 <Card
                   key={book.id}
-                  className={styles.libraryBook}
+                  className={styles.libraryBookCard}
                   title={book.title}
                   image={book.cover ? book.cover : IMAGE_NOT_FOUND_URL}
                   link={`/reader/${book.id}`}

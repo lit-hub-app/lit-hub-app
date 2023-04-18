@@ -19,8 +19,6 @@ export default function CardComponent({ className, title, image, link }: Props) 
           priority={true}
           width='300'
           height={'300'}
-          // fill
-          // sizes="(max-width: 768px) 100%"
         />
       </Link>
     </div>
