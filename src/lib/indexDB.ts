@@ -1,4 +1,5 @@
 import Dexie, { Table } from 'dexie';
+import { indexedDB, IDBKeyRange } from "fake-indexeddb";
 
 export interface IndexBook {
     _id?: number;
@@ -9,18 +10,25 @@ export interface IndexBook {
     text: string;
 }
 
-export class localBookStore extends Dexie {
+export class LocalBookStore extends Dexie {
   // 'library' is added by dexie when declaring the stores()
   // We just tell the typing system this is the case
   library!: Table<IndexBook>; 
 
   constructor() {
-    super('localBookStore');
+    super('localBookStore', {
+      indexedDB,
+      IDBKeyRange
+    });
     this.version(1).stores({
       library: '++_id, title, author' // Primary key and indexed props
     });
   }
 }
-const indexedDB = new localBookStore();
+const dexie = new LocalBookStore()
 
-export default indexedDB;
+dexie.on('ready', () => {
+  console.log('IndexedDB ready');
+})
+
+export default dexie;

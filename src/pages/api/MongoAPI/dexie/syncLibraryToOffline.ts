@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import connection from "@/lib/database";
 import verifyToken from "@/lib/middleware";
 import Book ,{ BookDocument } from "@/models/Book";
-import  indexedDB from "@/lib/indexDB";
+import  dexie from "@/lib/indexDB";
 
 export default async function syncLibraryToOffline(
     req: NextApiRequest, 
@@ -22,7 +22,8 @@ export default async function syncLibraryToOffline(
             res.status(404).json({ success: false, message: 'No books found' });
         }
 
-        const localBooks = await indexedDB.library.bulkAdd(books);
+        const localBooks = await dexie.library.bulkAdd(books);
+
         console.log(localBooks);
 
         res.status(200).json({ success: true, localBooks });
